@@ -5,15 +5,17 @@ import { StyleSheet } from "react-native"
 export const style = StyleSheet.create({
     Main: {
         flex: 1,
-        borderWidth: 1,
+        width: "100%",
+        // borderWidth: 1,
         // borderColor: "green",
-        // justifyContent: "center",
-        alignItems: "center"
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "column"
     },
 
     // Alinhamento para elemento pai
     MainChildren: {
-        height: "95%",
+        flex: 1,
         width: "90%",
         // borderColor: "blue",
         // borderWidth: 1,
@@ -25,7 +27,7 @@ export const style = StyleSheet.create({
     ButtonNavigation: {
         height: 50,
         width: "100%",
-        marginTop: 60,
+        marginTop: 30,
         // borderColor: "yellow",
         // borderWidth: 1,
         justifyContent: "space-around",
@@ -35,7 +37,7 @@ export const style = StyleSheet.create({
 
     // Session de Navegações
     ViewNavigation: {
-        flex: 1,
+        height: 590,
         width: "100%",
         // borderColor: "black",
         // borderWidth: 2,

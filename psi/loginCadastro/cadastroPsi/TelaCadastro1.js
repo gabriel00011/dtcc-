@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-import { View, SafeAreaView, TouchableHighlight, TextInput } from "react-native"
+import { View, SafeAreaView, TouchableHighlight, TextInput, ScrollView, KeyboardAvoidingView, Platform } from "react-native"
 import { Text } from "react-native-elements"
 import { RadioButton } from "react-native-paper"
 
@@ -20,6 +20,7 @@ export default ({ navigation }) => {
             </View>
 
             {/* View RadioButton */}
+
             <View style={style["SessionRadio"]}>
 
                 <View value="Paciente" style={{ flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
@@ -28,7 +29,7 @@ export default ({ navigation }) => {
                         uncheckedColor="#A9A9A9"
                         status={checked === "first" ? "checked" : "unchecked"}
                         onPress={() => setChecked('first')}
-                        onPress={()=> navigation.navigate("ScreenPac1")}
+                        onPress={() => navigation.navigate("ScreenPac1")}
                     />
                     <Text style={{ fontSize: 15 }}>Paciente               {/*fim*/}
                     </Text>
@@ -46,12 +47,14 @@ export default ({ navigation }) => {
                 </View>
             </View>
 
-            <View>
-                <TextInput style={style["Inputs"]} placeholder="E-mail" />
-                <TextInput style={style["Inputs"]} placeholder="Senha" />
-                <TextInput style={style["Inputs"]} placeholder="Confirme sua senha" />
-            </View>
 
+            <View >
+                <ScrollView>
+                    <TextInput style={style["Inputs"]} placeholder="E-mail" />
+                    <TextInput style={style["Inputs"]} placeholder="Senha" />
+                    <TextInput style={style["Inputs"]} placeholder="Confirme sua senha" />
+                </ScrollView>
+            </View>
 
             {/* Botões de navegação de telas */}
             <View style={style["ButtonSession"]}>
@@ -69,6 +72,8 @@ export default ({ navigation }) => {
                 </TouchableHighlight>
 
             </View>
+
         </SafeAreaView>
+
     )
 }

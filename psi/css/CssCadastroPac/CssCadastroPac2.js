@@ -8,6 +8,7 @@ export const style = StyleSheet.create({
         flex: 1,
         // borderWidth: 1,
         // borderColor: "yellow",
+        flexDirection:"column",
         justifyContent: "space-evenly"
     },
 
@@ -18,13 +19,15 @@ export const style = StyleSheet.create({
         // borderWidth: 1,
         // borderColor: "green",
         flexDirection: "row",
-        justifyContent: "space-around"
+        justifyContent: "space-around",
+        marginTop: -10
     },
 
     // Session de campo de inputs
     InputSession: {
         // borderColor: "red",
-        // borderWidth: 1
+        // borderWidth: 1,
+        marginTop: -10
     },
 
     // estilização de inputs
@@ -44,7 +47,8 @@ export const style = StyleSheet.create({
         // borderColor: "red",
         // borderWidth: 1,
         flexDirection: "row",
-        justifyContent: "space-between"
+        justifyContent: "space-between",
+        marginTop: -20
     },
 
     // Botões

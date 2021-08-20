@@ -10,20 +10,20 @@ export const estilo = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         // borderColor: "green",
-        // borderWidth: 1,
+        // borderWidth: 3,
         flexDirection: "column"
     },
     // Centralização ao elemento pai - Filho
     MainChildren: {
+        flex: 1,
         flexDirection: "column",
-        height: "95%",
         width: "90%",
         // borderColor: "blue",
         // borderWidth: 1,
     },
     // Logo - Filho
     Logo: {
-        marginTop: 60,
+        marginTop: "15%",
         height: 190,
         width: "100%",
         borderColor: "gray",
@@ -45,9 +45,9 @@ export const estilo = StyleSheet.create({
 
     // campos de inserção, entrar e esqueceu a senha
     Footer: {
-        flex: 1,
+        height: 400,
         width: "100%",
-        // borderColor: "yellow",
+        // borderColor: "red",
         // borderWidth: 1,
         justifyContent: "space-evenly",
         alignItems: "center"
@@ -55,7 +55,10 @@ export const estilo = StyleSheet.create({
 
     // session de input
     InputsSession: {
-        width: "100%"
+        // height: 250,
+        width: "100%",
+        // borderColor: "pink",
+        // borderWidth: 2,
     },
 
     Inputs: {
@@ -67,7 +70,6 @@ export const estilo = StyleSheet.create({
     },
 
     // Buttons
-
     ButtonLogIn: {
         height: 40,
         width: 150,

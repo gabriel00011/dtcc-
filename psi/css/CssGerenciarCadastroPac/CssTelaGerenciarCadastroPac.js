@@ -13,7 +13,7 @@ export const style = StyleSheet.create({
         alignItems: "center"
     },
 
-    // View centralizador ao elemento pai
+    // Session centralizador ao elemento pai
     SessionCenter: {
         flex: 1,
         width: "90%",
@@ -23,42 +23,23 @@ export const style = StyleSheet.create({
         justifyContent: "center",
     },
 
-    // Session perfil e agenda
-    SessionButtonPerfil: {
-        height: 60,
-        width: "100%",
-        // borderWidth: 1,
-        // borderColor: "black",
-        flexDirection: "row",
-        marginTop: 50
-    },
 
     // Botões de perfil e agenda
-    ButtonPerfil: {
+    ButtonBack: {
         height: 40,
         width: 120,
-        borderWidth: 2,
-        borderColor: "#7B68EE",
+        // borderWidth: 2,
+        // borderColor: "#7B68EE",
         borderRadius: 5,
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "space-evenly"
+        marginTop: 30
     },
 
-    ButtonAgenda: {
-        height: 40,
-        width: 120,
-        borderWidth: 2,
-        borderColor: "#7B68EE",
-        marginLeft: 10,
-        borderRadius: 5,
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-evenly"
-    },
+
     // Session de foto e conta
     SessionPhoto: {
-        height: 120,
+        height: 100,
         width: "100%",
         // borderWidth: 1,
         // borderColor: "red",
@@ -123,7 +104,7 @@ export const style = StyleSheet.create({
 
     // SessionButtons
     SessionButtonFooter: {
-        height: 300,
+        height: 350,
         width: "100%",
         flexDirection: "column",
         justifyContent: "space-around",

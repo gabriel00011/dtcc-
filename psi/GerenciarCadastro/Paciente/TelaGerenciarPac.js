@@ -1,14 +1,15 @@
 import React from "react"
 
 import { SafeAreaView, View, TextInput, TouchableHighlight, ScrollView } from "react-native"
-import { Text } from "react-native-elements"
+import { Text, Icon } from "react-native-elements"
 
 import { NavigationContainer } from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
+import IconAntDesign from "react-native-vector-icons/AntDesign"
 
 
 // importação de componente de estilização
-import { style } from "../css/CssGerenciarCadastroPsi/TelaGerenciarCadastroPsi1"
+import { style } from "../../css/CssGerenciarCadastroPac/CssTelaGerenciarCadastroPac"
 
 export default ({ navigation }) => {
 
@@ -17,18 +18,16 @@ export default ({ navigation }) => {
 
             <View style={style["SessionCenter"]}>
 
-                {/* Botões com icons de psicologo */}
+                {/* View Botão Incio */}
                 <View style={style["SessionButtonPerfil"]}>
 
-                    <TouchableHighlight>
-                        <View style={style["ButtonPerfil"]}>
-                            <Text style={{ color: "#7B68EE", fontFamily: "monospace" }}>Perfil</Text>
-                        </View>
-                    </TouchableHighlight>
+                    <TouchableHighlight underlayColor="none">
+                        <View style={style["ButtonBack"]}>
+                            <Text style={{ marginRight: 10 }}>
+                                <IconAntDesign name="leftcircleo" color="#7B68EE" size={20}  />                            
+                            </Text>
 
-                    <TouchableHighlight>
-                        <View style={style["ButtonAgenda"]}>
-                            <Text style={{ color: "#7B68EE", fontFamily: "monospace" }}>Agenda</Text>
+                            <Text style={{ color: "#7B68EE", fontSize: 15 }}>Ir para início</Text>
                         </View>
                     </TouchableHighlight>
 
@@ -49,32 +48,33 @@ export default ({ navigation }) => {
                 {/* View de navegações de telas */}
                 <View style={style["SessionNavegation"]}>
                     <ScrollView>
-                        <TextInput style={style["Inputs"]} placeholder="nome" />
-                        <TextInput style={style["Inputs"]} placeholder="sobrenome" />
-                        <TextInput style={style["Inputs"]} placeholder="CRP" />
-                        <TextInput style={style["Inputs"]} placeholder="CPF" />
-                        <TextInput style={style["Inputs"]} placeholder="CEP" />
-                        <TextInput style={style["Inputs"]} placeholder="Rua" />
+                        <TextInput style={style["Inputs"]} placeholder=" Nome" />
+                        <TextInput style={style["Inputs"]} placeholder=" Sobrenome" />
+                        <TextInput style={style["Inputs"]} placeholder=" CPF" />
+                        <TextInput style={style["Inputs"]} placeholder=" RG" />
+                        <TextInput style={style["Inputs"]} placeholder=" Data de nascimento" />
+                        <TextInput style={style["Inputs"]} placeholder=" CEP" />
+                        <TextInput style={style["Inputs"]} placeholder=" Rua" />
 
                         {/* View duplo elementos */}
                         <View style={style["SessionDubleInputs"]}>
-                            <TextInput style={style["FragmentInputsNumber"]} placeholder="Nº" />
-                            <TextInput style={style["FragmentInputsComp"]} placeholder="Complemento" />
+                            <TextInput style={style["FragmentInputsNumber"]} placeholder=" Nº" />
+                            <TextInput style={style["FragmentInputsComp"]} placeholder=" Complemento" />
                         </View>
 
-                        <TextInput style={style["Inputs"]} placeholder="Bairro" />
-                        <TextInput style={style["Inputs"]} placeholder="Cidade" />
-                        <TextInput style={style["Inputs"]} placeholder="Enum" />
+                        <TextInput style={style["Inputs"]} placeholder=" Bairro" />
+                        <TextInput style={style["Inputs"]} placeholder=" Cidade" />
+                        <TextInput style={style["Inputs"]} placeholder=" Enum" />
 
                         <View style={style["SessionDubleInputs"]}>
-                            <TextInput style={style["FragmentInputsComp"]} placeholder="Telefone" />
-                            <TextInput style={style["FragmentInputsNumber"]} placeholder="celular" />
+                            <TextInput style={style["FragmentInputsComp"]} placeholder=" Telefone" />
+                            <TextInput style={style["FragmentInputsNumber"]} placeholder=" celular" />
                         </View>
 
-                        <TextInput style={style["Inputs"]} placeholder="Email" />
-                        <TextInput style={style["Inputs"]} placeholder="Senha Atual" />
-                        <TextInput style={style["Inputs"]} placeholder="Nova Senha" />
-                        <TextInput style={style["Inputs"]} placeholder="Confirme a nova senha" />
+                        <TextInput style={style["Inputs"]} placeholder=" Email" />
+                        <TextInput style={style["Inputs"]} placeholder=" Senha Atual" />
+                        <TextInput style={style["Inputs"]} placeholder=" Nova Senha" />
+                        <TextInput style={style["Inputs"]} placeholder=" Confirme a nova senha" />
 
                         {/*View botões footer*/}
                         <View style={style["SessionButtonFooter"]}>
@@ -109,18 +109,3 @@ export default ({ navigation }) => {
         </SafeAreaView>
     )
 }
-            // <View>
-
-            //     <TouchableHighlight >
-            //         <View>
-            //             <Text>Voltar</Text>
-            //         </View>
-            //     </TouchableHighlight>
-
-            //     <TouchableHighlight >
-            //         <View>
-            //             <Text>Proximo</Text>
-            //         </View>
-            //     </TouchableHighlight>
-
-            // </View>

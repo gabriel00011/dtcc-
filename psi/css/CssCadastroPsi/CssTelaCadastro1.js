@@ -13,11 +13,15 @@ export const style = StyleSheet.create({
 
     // Session Radio Button
     SessionRadio: {
-        marginLeft: 80
+        marginLeft: 80,
+        height: 80,
+        // borderColor: "pink",
+        // borderWidth: 2,
     },
 
     // estilização inputs
     Inputs: {
+        // 40
         height: 40,
         width: "100%",
         borderColor: "#A9A9A9",
@@ -28,14 +32,13 @@ export const style = StyleSheet.create({
 
     // Session de Botões
     ButtonSession: {
-        height: 45,
+        height: 40,
         width: "100%",
         // borderColor: "red",
         // borderWidth: 1,
         flexDirection: "row",
         justifyContent: "space-between"
     },
-
 
     // Botões
     Buttons: {

@@ -1,7 +1,7 @@
 // Tela que receberá o estático para transações das telas "Navigations"
 
 import React from "react"
-import { View, SafeAreaView, TouchableHighlight, TextInput, Button, StyleSheet } from "react-native"
+import { View, SafeAreaView, TouchableHighlight, TextInput, Button, StyleSheet, ScrollView, KeyboardAvoidingView } from "react-native"
 import { Text } from "react-native-elements"
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
@@ -24,7 +24,11 @@ const Stack = createNativeStackNavigator()
 
 export default ({ navigation }) => {
     return (
-        <SafeAreaView style={style["Main"]}>
+
+        <KeyboardAvoidingView
+            behavior={Platform.OS == "ios" ? "padding" : null}
+            keyboardVerticalOffset={80}
+            style={style["Main"]}>
 
             <View style={style["MainChildren"]}>
 
@@ -45,7 +49,9 @@ export default ({ navigation }) => {
 
                 </View>
                 {/* View de area de Cadastro Psicologo -- Navigations --*/}
-                <View style={style["ViewNavigation"]}>
+
+                <ScrollView contentContainerStyle={style["ViewNavigation"]}>
+
                     <Stack.Navigator initialRouteName="ScreenPac1" screenOptions={{ headerShown: false }}>
 
                         {/* Navegação de telas do Psicologos */}
@@ -59,9 +65,9 @@ export default ({ navigation }) => {
                         <Stack.Screen name="ScreenPsi3" component={ScreenRegister3} />
 
                     </Stack.Navigator>
+                </ScrollView>
 
-                </View>
             </View>
-        </SafeAreaView>
+        </KeyboardAvoidingView>
     )
 }

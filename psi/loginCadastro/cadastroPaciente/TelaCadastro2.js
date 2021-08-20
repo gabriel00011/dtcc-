@@ -1,11 +1,11 @@
 import React, { useState } from "react"
 
-import { View, SafeAreaView, TextInput, Button, TouchableHighlight } from "react-native"
+import { View, SafeAreaView, TextInput, Button, TouchableHighlight, ScrollView } from "react-native"
 import { Text } from "react-native-elements"
 import { RadioButton } from "react-native-paper"
 
 // importação de componente de estilização
-import { style } from "../../css/CssCadastroPsi/CssTelaCadastro2"
+import { style } from "../../css/CssCadastroPac/CssCadastroPac2"
 
 export default ({ navigation }) => {
 
@@ -27,7 +27,7 @@ export default ({ navigation }) => {
                             uncheckedColor="#A9A9A9"
                             status={checked === "first" ? "checked" : "unchecked"}
                             onPress={() => setChecked('first')} />
-                        <Text style={{ fontSize: 15 }}>Paciente  </Text>
+                        <Text style={{ fontSize: 15 }}>Masculino  </Text>
                     </View>
 
                     <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
@@ -36,7 +36,7 @@ export default ({ navigation }) => {
                             uncheckedColor="#A9A9A9"
                             status={checked === 'second' ? 'checked' : 'unchecked'}
                             onPress={() => setChecked('second')} value="Psicologo"
-                        /><Text style={{ fontSize: 15 }}>Psicologo</Text>
+                        /><Text style={{ fontSize: 15 }}>Feminio      </Text>
                     </View>
 
                 </View>
@@ -45,7 +45,6 @@ export default ({ navigation }) => {
                     <Text style={{ color: "#6A5ACD", marginBottom: 10 }}>Genêro</Text>
                     <Text>Enum de Gênero</Text>
                 </View>
-
             </View>
 
             {/* Area de campo de inserção de texto */}
@@ -58,8 +57,7 @@ export default ({ navigation }) => {
                 <TextInput style={style["Inputs"]} placeholder="Telefone" />
                 <TextInput style={style["Inputs"]} placeholder="Celular" />
             </View>
-
-            {/* Botões de navegação de telas */}
+            {/*style Botões de navegação de telas */}
             <View style={style.ButtonSession}>
                 <TouchableHighlight underlayColor="none" onPress={() => navigation.navigate("ScreenPac1")}>
                     <View style={style.Buttons}>

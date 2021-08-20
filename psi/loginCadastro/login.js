@@ -1,6 +1,6 @@
 import React from "react"
 
-import { View, SafeAreaView, TextInput, Button, TouchableHighlight } from "react-native"
+import { View, SafeAreaView, TextInput, Button, TouchableHighlight, ScrollView } from "react-native"
 import { Text } from "react-native-elements"
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
@@ -42,33 +42,35 @@ export default ({ navigation }) => {
                 </View>
 
                 {/* Footer */}
-                <View style={estilo.Footer}>
-                    <Text>Radiobutton Psicologo</Text>
-                    <Text>Radiobutton Paciente</Text>
+                <ScrollView >
+                    <View style={estilo.Footer}>
+                        <Text>Radiobutton Psicologo</Text>
+                        <Text>Radiobutton Paciente</Text>
 
-                    <View style={estilo.InputsSession}>
-                        <TextInput style={estilo.Inputs} placeholder="E-mail" />
-                        <Text></Text>
-                        <TextInput style={estilo.Inputs} placeholder="Senha" />
-                    </View>
-                    <TouchableHighlight underlayColor="#6A5ACD">
-                        <View style={estilo.ButtonLogIn}>
-                            <Text style={{ color: "white" }} h4>Entrar</Text>
+                        <View style={estilo.InputsSession}>
+                            <TextInput style={estilo.Inputs} placeholder=" E-mail" />
+                            <Text></Text>
+                            <TextInput style={estilo.Inputs} placeholder=" Senha" />
                         </View>
-                    </TouchableHighlight>
+                        <TouchableHighlight underlayColor="#6A5ACD">
+                            <View style={estilo.ButtonLogIn}>
+                                <Text style={{ color: "white" }} h4>Entrar</Text>
+                            </View>
+                        </TouchableHighlight>
 
+                        <Text>Esqueceu a senha ?</Text>
 
-                    <Text>Esqueceu a senha ?</Text>
+                        <TouchableHighlight >
+                            <View>
+                                <Text>Clique aqui</Text>
+                            </ View>
+                        </TouchableHighlight>
 
-                    <TouchableHighlight >
-                        <View>
-                            <Text>Clique aqui</Text>
-                        </ View>
-                    </TouchableHighlight>
-
-                </View>
+                    </View>
+                </ScrollView>
 
             </View>
+
         </SafeAreaView >
     )
 }
