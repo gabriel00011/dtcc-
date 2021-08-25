@@ -9,7 +9,7 @@ import { style } from "../../css/CssCadastroPac/CssCadastroPac1"
 export default ({ navigation }) => {
 
     const [checked, setChecked] = useState("first")
-// 
+    // 
     return (
         <SafeAreaView style={style["Main"]}>
             <View style={{ marginLeft: 40 }}>

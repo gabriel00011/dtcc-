@@ -1,17 +1,24 @@
-import React from "react"
+import React, { useState } from "react"
 
-import { SafeAreaView, View, TouchableHighlight, ScrollView } from "react-native"
+import { SafeAreaView, View, TouchableHighlight, ScrollView, CheckBox } from "react-native"
 import { Text } from "react-native-elements"
 import IconFontAwesome5 from "react-native-vector-icons/FontAwesome5"
 import IconMaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons"
 import IconAntDesign from "react-native-vector-icons/AntDesign"
 import IconFeather from "react-native-vector-icons/Feather"
+import { RadioButton } from "react-native-paper"
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize"
 
 // importação de arquivo para estilização
 import { style } from "../css/CssMapa/CssMapa"
 
 export default ({ navigation }) => {
+
+    const [checked, setChecked] = useState("first")
+    const [isSelected, setSelection] = useState(false);
+
     return (
+
         <SafeAreaView style={style["Main"]}>
 
             <View style={style["SessionCenter"]}>
@@ -51,13 +58,128 @@ export default ({ navigation }) => {
 
                 </View>
 
-                <View></View>
+                {/* View Botões de online*/}
+                <View style={style["SessionModalidade"]}>
 
-                <View></View>
+                    <Text style={{ fontWeight: "bold" }}>Modalidade</Text>
 
-                <View></View>
+                    <View style={style["SessionButtonsTipo"]}>
+
+                        <TouchableHighlight style={style["ButtonsOnline"]}>
+                            <View>
+                                <Text style={{ color: "#6A5ACD" }}>Online</Text>
+                            </View>
+                        </TouchableHighlight>
+
+                        <TouchableHighlight style={style["ButtonsPresencial"]}>
+                            <View>
+                                <Text style={{ color: "#6A5ACD" }}>Presencial</Text>
+                            </View>
+                        </TouchableHighlight>
+
+                    </View>
+
+                </View>
+
+                {/* View se seleção */}
+                <View style={style["SessionSelects"]}>
+
+                    <View style={style["SessionOrgSelects"]}>
+
+                        <View style={style["RadioButton"]}>
+
+                            <Text style={{ fontWeight: "bold" }}>Distância</Text>
+
+                            <View style={style["AlignRadioButton"]}>
+
+                                <View style={style["AlignSelects"]}>
+                                    <RadioButton
+                                        color="#6A5ACD"
+                                        uncheckedColor="#A9A9A9"
+                                        status={checked === 'second' ? 'checked' : 'unchecked'}
+                                        onPress={() => setChecked('second')}
+                                    />
+                                    <Text>até 2km</Text>
+                                </View>
+
+                                <View style={style["AlignSelects"]}>
+                                    <RadioButton
+                                        color="#6A5ACD"
+                                        uncheckedColor="#A9A9A9"
+                                        status={checked === 'second' ? 'checked' : 'unchecked'}
+                                        onPress={() => setChecked('second')}
+                                    />
+                                    <Text>até 10km</Text>
+                                </View>
+
+                                <View style={style["AlignSelects"]}>
+                                    <RadioButton
+                                        color="#6A5ACD"
+                                        uncheckedColor="#A9A9A9"
+                                        status={checked === 'second' ? 'checked' : 'unchecked'}
+                                        onPress={() => setChecked('second')}
+                                    />
+                                    <Text>até 25km</Text>
+                                </View>
+
+                            </View>
+                        </View>
+
+                        {/* Check Box */}
+                        <View style={style["Checkbox"]}>
+
+                            <Text style={{ fontWeight: "bold" }}>Público</Text>
+
+                            <View style={style["AlignChecbox"]}>
+
+                                <View style={style["AlignSelects"]}>
+                                    <CheckBox
+                                        value={isSelected}
+                                        onValueChange={setSelection}
+                                    />
+                                    <Text>Infantil</Text>
+                                </View>
+
+                                <View style={style["AlignSelects"]}>
+                                    <CheckBox
+                                        value={isSelected}
+                                        onValueChange={setSelection}
+                                    /><Text>Idoso</Text>
+                                </View>
+
+                                <View style={style["AlignSelects"]}>
+                                    <CheckBox
+                                        value={isSelected}
+                                        onValueChange={setSelection}
+                                    /><Text>Casais</Text>
+                                </View>
+
+                            </View>
+                        </View>
+                    </View>
+
+                    <View>
+                        <Text style={{ textAlign: "right" }}>Especialistas em...</Text>
+                    </View>
+
+                    <View style={style["SessionCenterButtonAplicar"]}>
+
+                        <TouchableHighlight>
+                            <View style={style["ButtonsAplicar"]}>
+                                <Text style={{ color: "white", fontSize: RFPercentage(3) }}>APLICAR</Text>
+                            </View>
+                        </TouchableHighlight>
+                    </View>
+
+                </View>
+
+                {/* View Mapa */}
+                <View style={style["SessionMapa"]}>
+
+                </View>
 
             </View>
         </SafeAreaView>
+
     )
 }
