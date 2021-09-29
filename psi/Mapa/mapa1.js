@@ -1,21 +1,66 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 
 import { SafeAreaView, View, TouchableHighlight, ScrollView, CheckBox } from "react-native"
 import { Text } from "react-native-elements"
+
 import IconFontAwesome5 from "react-native-vector-icons/FontAwesome5"
 import IconMaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons"
 import IconAntDesign from "react-native-vector-icons/AntDesign"
 import IconFeather from "react-native-vector-icons/Feather"
 import { RadioButton } from "react-native-paper"
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize"
-
 // importação de arquivo para estilização
 import { style } from "../css/CssMapa/CssMapa"
+
+import axios from "axios"
 
 export default ({ navigation }) => {
 
     const [checked, setChecked] = useState("first")
-    const [isSelected, setSelection] = useState(false);
+    const [infantil, setInfantil] = useState(false)
+    const [idoso, setIdoso] = useState(false)
+    const [casais, setCasais] = useState(false)
+
+    const [colorOnline, setColorOnline] = useState("")
+    const [colorPresencial, setcolorPresencial] = useState("")
+
+
+    // valor do checkbox 
+    let IdosoValue = ""
+    let casaisValue = ""
+    let infantilValue = ""
+
+    if (infantil == true) {
+        infantilValue = "infantil"
+    }
+
+    if (idoso == true) {
+        IdosoValue = "idoso"
+    }
+
+    if (casais == true) {
+        casaisValue = "casais"
+    }
+
+
+    // valor do RadioButton 
+    let kms = ""
+
+    if (checked == "2km") {
+        kms = "2"
+    }
+
+    if (checked == "10km") {
+        kms = "10"
+    }
+
+    if (checked == "25km") {
+        kms = "25"
+    }
+
+    // console.warn(IdosoValue + casaisValue + infantilValue)
+    // console.warn(kms)
+    // console.warn(colorOnline)
 
     return (
 
@@ -65,15 +110,21 @@ export default ({ navigation }) => {
 
                     <View style={style["SessionButtonsTipo"]}>
 
-                        <TouchableHighlight style={style["ButtonsOnline"]}>
+                        <TouchableHighlight
+                            underlayColor="none"
+                            // onPress={() => setColorOnline("#A9A9A9")}
+                            style={style["ButtonsOnline"]}>
                             <View>
-                                <Text style={{ color: "#6A5ACD" }}>Online</Text>
+                                <Text style={{ color: "#7B68EE" }}>Online</Text>
                             </View>
                         </TouchableHighlight>
 
-                        <TouchableHighlight style={style["ButtonsPresencial"]}>
+                        <TouchableHighlight
+                            underlayColor="none"
+                            // onPress={() => setcolorPresencial("#7B68EE")}
+                            style={style["ButtonsPresencial"]}>
                             <View>
-                                <Text style={{ color: "#6A5ACD" }}>Presencial</Text>
+                                <Text style={{ color: "#7B68EE" }}>Presencial</Text>
                             </View>
                         </TouchableHighlight>
 
@@ -96,8 +147,8 @@ export default ({ navigation }) => {
                                     <RadioButton
                                         color="#6A5ACD"
                                         uncheckedColor="#A9A9A9"
-                                        status={checked === 'second' ? 'checked' : 'unchecked'}
-                                        onPress={() => setChecked('second')}
+                                        status={checked === '2km' ? 'checked' : 'unchecked'}
+                                        onPress={() => setChecked('2km')}
                                     />
                                     <Text>até 2km</Text>
                                 </View>
@@ -106,8 +157,8 @@ export default ({ navigation }) => {
                                     <RadioButton
                                         color="#6A5ACD"
                                         uncheckedColor="#A9A9A9"
-                                        status={checked === 'second' ? 'checked' : 'unchecked'}
-                                        onPress={() => setChecked('second')}
+                                        status={checked === '10km' ? 'checked' : 'unchecked'}
+                                        onPress={() => setChecked('10km')}
                                     />
                                     <Text>até 10km</Text>
                                 </View>
@@ -116,8 +167,8 @@ export default ({ navigation }) => {
                                     <RadioButton
                                         color="#6A5ACD"
                                         uncheckedColor="#A9A9A9"
-                                        status={checked === 'second' ? 'checked' : 'unchecked'}
-                                        onPress={() => setChecked('second')}
+                                        status={checked === '25km' ? 'checked' : 'unchecked'}
+                                        onPress={() => setChecked('25km')}
                                     />
                                     <Text>até 25km</Text>
                                 </View>
@@ -134,23 +185,23 @@ export default ({ navigation }) => {
 
                                 <View style={style["AlignSelects"]}>
                                     <CheckBox
-                                        value={isSelected}
-                                        onValueChange={setSelection}
+                                        value={infantil}
+                                        onValueChange={setInfantil}
                                     />
                                     <Text>Infantil</Text>
                                 </View>
 
                                 <View style={style["AlignSelects"]}>
                                     <CheckBox
-                                        value={isSelected}
-                                        onValueChange={setSelection}
+                                        value={idoso}
+                                        onValueChange={setIdoso}
                                     /><Text>Idoso</Text>
                                 </View>
 
                                 <View style={style["AlignSelects"]}>
                                     <CheckBox
-                                        value={isSelected}
-                                        onValueChange={setSelection}
+                                        value={casais}
+                                        onValueChange={setCasais}
                                     /><Text>Casais</Text>
                                 </View>
 

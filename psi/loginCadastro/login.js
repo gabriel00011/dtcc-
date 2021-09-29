@@ -1,9 +1,16 @@
-import React from "react"
+import React, { useState } from "react"
 
-import { View, SafeAreaView, TextInput, Button, TouchableHighlight, ScrollView } from "react-native"
+import {
+    View, SafeAreaView, TextInput,
+    Button, TouchableHighlight, ScrollView
+} from "react-native"
+
+import { RadioButton } from "react-native-paper"
+
 import { Text } from "react-native-elements"
-
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
+
+import { FuncLogin, Cadastrar } from "../functions/login"
 
 // importação tela cadastroPsi
 import CadastroPsi from "./cadastroPsi/cadastro"
@@ -14,7 +21,15 @@ import { estilo } from "../css/login"
 const Stack = createNativeStackNavigator()
 
 export default ({ navigation }) => {
+
+    const [emailValue, setEmailInput] = useState("")
+    const [passwordValue, setPasswordInput] = useState("")
+    const [checked, setChecked] = useState("second")
+
+    FuncLogin(emailValue, passwordValue)
+
     return (
+
         // Elemento pai
         <SafeAreaView style={estilo.Main}>
 
@@ -44,15 +59,37 @@ export default ({ navigation }) => {
                 {/* Footer */}
                 <ScrollView >
                     <View style={estilo.Footer}>
-                        <Text>Radiobutton Psicologo</Text>
-                        <Text>Radiobutton Paciente</Text>
+
+                        <View value="Paciente" style={{ flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
+                            <RadioButton
+                                color="#6A5ACD"
+                                uncheckedColor="#A9A9A9"
+                                status={checked === "masculino" ? "checked" : "unchecked"}
+                                onPress={() => setChecked('masculino')} />
+                            <Text style={{ fontSize: 15 }}>Paciente   </Text>
+                        </View>
+
+                        <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center", marginTop: -20 }}>
+                            <RadioButton
+                                color="#6A5ACD"
+                                uncheckedColor="#A9A9A9"
+                                status={checked === 'feminino' ? 'checked' : 'unchecked'}
+                                onPress={() => setChecked('feminino')} value="Psicologo"
+                            /><Text style={{ fontSize: 15 }}>Psicologo </Text>
+                        </View>
 
                         <View style={estilo.InputsSession}>
-                            <TextInput style={estilo.Inputs} placeholder=" E-mail" />
+
+                            <TextInput style={estilo.Inputs} onChangeText={(email) => setEmailInput(email)}
+                                placeholder=" E-mail" />
                             <Text></Text>
-                            <TextInput style={estilo.Inputs} placeholder=" Senha" />
+
+                            <TextInput style={estilo.Inputs} onChangeText={(password) => setPasswordInput(password)}
+                                secureTextEntry={true} placeholder=" Senha" />
+
                         </View>
-                        <TouchableHighlight underlayColor="#6A5ACD">
+
+                        <TouchableHighlight underlayColor="#6A5ACD" onPress={() => Cadastrar()}>
                             <View style={estilo.ButtonLogIn}>
                                 <Text style={{ color: "white" }} h4>Entrar</Text>
                             </View>

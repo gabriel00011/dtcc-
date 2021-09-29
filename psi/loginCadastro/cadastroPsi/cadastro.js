@@ -1,11 +1,10 @@
 // Tela que receberá o estático para transações das telas "Navigations"
+import React, { useContext } from "react"
 
-import React from "react"
 import { View, SafeAreaView, TouchableHighlight, TextInput, Button, StyleSheet, ScrollView, KeyboardAvoidingView } from "react-native"
 import { Text } from "react-native-elements"
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
-import { StackActions } from "@react-navigation/native"
 
 // importação de telas de cadastro para psicologos
 import ScreenRegister1 from "./TelaCadastro1"
@@ -20,9 +19,12 @@ import ScreenRegisterPac3 from "../cadastroPaciente/TelaCadastro3"
 // importação da estilização CSS
 import { style } from "../../css/CssCadastroPsi/CssCadastroPsi"
 
+
 const Stack = createNativeStackNavigator()
 
 export default ({ navigation }) => {
+
+
     return (
 
         <KeyboardAvoidingView
@@ -51,23 +53,25 @@ export default ({ navigation }) => {
                 {/* View de area de Cadastro Psicologo -- Navigations --*/}
 
                 <ScrollView contentContainerStyle={style["ViewNavigation"]}>
+                   
+                    
+                        <Stack.Navigator initialRouteName="ScreenPac1" screenOptions={{ headerShown: false }}>
 
-                    <Stack.Navigator initialRouteName="ScreenPac1" screenOptions={{ headerShown: false }}>
+                            {/* Navegação de telas do Psicologos */}
+                            <Stack.Screen name="ScreenPac1" component={ScreenRegisterPac1} />
+                            <Stack.Screen name="ScreenPac2" component={ScreenRegisterPac2} />
+                            <Stack.Screen name="ScreenPac3" component={ScreenRegisterPac3} />
 
-                        {/* Navegação de telas do Psicologos */}
-                        <Stack.Screen name="ScreenPac1" component={ScreenRegisterPac1} />
-                        <Stack.Screen name="ScreenPac2" component={ScreenRegisterPac2} />
-                        <Stack.Screen name="ScreenPac3" component={ScreenRegisterPac3} />
+                            {/* Navegação de telas do Psicologos */}
+                            <Stack.Screen name="ScreenPsi1" component={ScreenRegister1} />
+                            <Stack.Screen name="ScreenPsi2" component={ScreenRegister2} />
+                            <Stack.Screen name="ScreenPsi3" component={ScreenRegister3} />
 
-                        {/* Navegação de telas do Psicologos */}
-                        <Stack.Screen name="ScreenPsi1" component={ScreenRegister1} />
-                        <Stack.Screen name="ScreenPsi2" component={ScreenRegister2} />
-                        <Stack.Screen name="ScreenPsi3" component={ScreenRegister3} />
-
-                    </Stack.Navigator>
+                        </Stack.Navigator>
+               
                 </ScrollView>
 
             </View>
-        </KeyboardAvoidingView>
+        </KeyboardAvoidingView >
     )
 }

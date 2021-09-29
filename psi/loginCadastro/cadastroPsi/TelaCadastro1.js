@@ -6,13 +6,18 @@ import { RadioButton } from "react-native-paper"
 
 import { style } from "../../css/CssCadastroPsi/CssTelaCadastro1"
 
+import { FuncDadosPsi1, ComfirmValuePassword } from "../../functions/CadastroPsicologo"
 
 export default ({ navigation }) => {
 
     const [checked, setChecked] = useState("second")
+    const [emailValue, setEmailInput] = useState("")
+    const [passwordValue, setPasswordInput] = useState("")
+    const [passwordConfirmValue, setConfirmPasswordInput] = useState("")
+
+    FuncDadosPsi1(emailValue, passwordValue, passwordConfirmValue)
 
     return (
-
         // view principal
         <SafeAreaView style={style["Main"]}>
             <View style={{ marginLeft: 40 }}>
@@ -45,14 +50,24 @@ export default ({ navigation }) => {
                     /><Text style={{ fontSize: 15 }}>Psicologo            {/*fim*/}
                     </Text>
                 </View>
+
             </View>
 
 
             <View >
                 <ScrollView>
-                    <TextInput style={style["Inputs"]} placeholder="E-mail" />
-                    <TextInput style={style["Inputs"]} placeholder="Senha" />
-                    <TextInput style={style["Inputs"]} placeholder="Confirme sua senha" />
+
+                    <TextInput style={style["Inputs"]}
+                        onChangeText={(email) => setEmailInput(email)} placeholder="E-mail" />
+
+                    <TextInput style={style["Inputs"]}
+                        onChangeText={(password) => setPasswordInput(password)} secureTextEntry={true} placeholder="Senha" />
+
+                    <TextInput style={style["Inputs"]}
+                        onChangeText={(password) => setConfirmPasswordInput(password)} secureTextEntry={true} placeholder="Confirme sua senha" />
+
+                    <Text>{ComfirmValuePassword()}</Text>
+
                 </ScrollView>
             </View>
 
