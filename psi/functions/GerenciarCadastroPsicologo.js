@@ -58,7 +58,7 @@ export function UpdateDadosPsicologo() {
 
     try {
 
-        axios.post('http://192.168.15.223/backend', {
+        axios.put('http://192.168.15.223/updatePsicologo', {
 
             email: DadosPsicologo.email,
             pass: DadosPsicologo.pass,

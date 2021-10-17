@@ -3,7 +3,9 @@ import axios from "axios"
 
 const DadosCard = {}
 
-export const FuncDadosCard = (infantil, idoso, casais, todos, lgbtq, pcd, ansiedade, toc, burnout, tag, casamento, alcoolismo) => {
+export const FuncDadosCard = (kms, infantil, idoso, casais, todos, lgbtq, pcd, ansiedade, toc, burnout, tag, casamento, alcoolismo) => {
+
+    DadosCard.kms = kms
 
     DadosCard.infantil = infantil
     DadosCard.idoso = idoso
@@ -18,6 +20,31 @@ export const FuncDadosCard = (infantil, idoso, casais, todos, lgbtq, pcd, ansied
     DadosCard.tag = tag
     DadosCard.casamento = casamento
     DadosCard.alcoolismo = alcoolismo
+
+}
+
+export function sendSearch() {
+
+
+    axios.post(`http://192.168.15.223/searchPsicologo`, {
+
+        kms: DadosCard.kms,
+        infantil: DadosCard.infantil,
+        idoso: DadosCard.idoso,
+        casais: DadosCard.casais,
+        todos: DadosCard.todos,
+        lgbtq: DadosCard.lgbtq,
+        pcd: DadosCard.pcd,
+
+        ansiedade: DadosCard.ansiedade,
+        toc: DadosCard.toc,
+        burnout: DadosCard.burnout,
+        tag: DadosCard.tag,
+        casamento: DadosCard.casamento,
+        alcoolismo: DadosCard.alcoolismo
+
+    })
+
 
 }
 

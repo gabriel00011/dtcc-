@@ -75,6 +75,7 @@ export default ({ navigation }) => {
 
             </View>
 
+
             {/* Area de campo de inserção de texto */}
             <View style={style["InputSession"]}>
 

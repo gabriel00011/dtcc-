@@ -27,17 +27,22 @@ export default function App() {
     <>
 
       <NavigationContainer>
+
         <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
-          {/* <Stack.Screen name="TelaPerfilPsi" component={TelaPerfilPsi} /> */}
+
           {/* <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="cadastroPsi" component={CadastroPsi} /> */}
-          {/* <Stack.Screen name="GerenciarCadastroPsi" component={GerenciarCadastroPsi} /> */}
-          {/* <Stack.Screen name="GerenciarCadastroPac" component={GerenciarCadastroPac} /> */}
-          {/* <Stack.Screen name="TelaPerfil1" component={TelaPerfilPaci} /> */}
-          {/* <Stack.Screen name="Mapa" component={Map} /> */}
-          {/* <Stack.Screen name="TelaAgendaPsi" component={TelaAgendaPsi} /> */}
+          <Stack.Screen name="cadastroPsi" component={CadastroPsi} />
+
+          <Stack.Screen name="Mapa" component={Map} /> */}
+          {/* <Stack.Screen name="GerenciarCadastroPac" component={GerenciarCadastroPac} />
+          <Stack.Screen name="TelaPerfil1" component={TelaPerfilPaci} /> */}
           <Stack.Screen name="Card" component={Card} />
-          {/* <Stack.Screen name="Card2" component={Card2}/> */}
+          <Stack.Screen name="Card2" component={Card2} />
+
+          <Stack.Screen name="TelaAgendaPsi" component={TelaAgendaPsi} />
+          <Stack.Screen name="TelaPerfilPsi" component={TelaPerfilPsi} />
+          <Stack.Screen name="GerenciarCadastroPsi" component={GerenciarCadastroPsi} />
+
         </Stack.Navigator>
       </NavigationContainer>
 

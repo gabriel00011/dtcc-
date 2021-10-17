@@ -61,7 +61,7 @@ export const FuncDadosPac3 = (cep, rua, numero, complemento, bairro, cidade, est
 export const UpdateDadosPaciente = () => {
     try {
 
-        axios.post('http://192.168.15.223/backend', {
+        axios.put('http://192.168.15.223/updatePaciente', {
 
             email: DadosPaciente.email,
             pass: DadosPaciente.pass,

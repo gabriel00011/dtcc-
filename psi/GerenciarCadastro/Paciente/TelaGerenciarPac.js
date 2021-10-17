@@ -10,8 +10,6 @@ import IconAntDesign from "react-native-vector-icons/AntDesign"
 
 import { FuncDadosPac1, FuncDadosPac2, FuncDadosPac3, UpdateDadosPaciente } from "../../functions/GerenciarCadastroPaciente"
 
-
-
 // importação de componente de estilização
 import { style } from "../../css/CssGerenciarCadastroPac/CssTelaGerenciarCadastroPac"
 

@@ -9,7 +9,9 @@ import axios from "axios"
 
 // importação de arquivo para estilização
 import { style } from "../css/CssCard/CssCard"
-// import {}
+
+// funcionalidades
+import { sendSearch, FuncDadosCard } from "../functions/Card1"
 
 export default ({ navigation }) => {
 
@@ -55,10 +57,6 @@ export default ({ navigation }) => {
         casaisValue = "casais"
     }
 
-    if (todos == true) {
-        todosValues = "todos"
-
-    }
 
     if (lgbtq == true) {
         lgbtqValues = "lgbtq"
@@ -116,12 +114,28 @@ export default ({ navigation }) => {
     if (checked == "25km") {
         kms = "25"
     }
+
+    if (todos == true) {
+        todosValues = "todos"
+        infantilValue = "infantil"
+        IdosoValue = "idoso"
+        casaisValue = "casais"
+        lgbtqValues = "lgbtq"
+        pcdValues = "pcd"
+        ansiedadeValue = "ansiedade"
+        tocValues = "toc"
+        burnoutValues = "burnout"
+        tagValues = "tag"
+        casamentoValues = "casamento"
+        alcoolismoValues = "alcoolismo"
+    }
     console.warn(kms)
-    console.warn(IdosoValue + " " + casaisValue + " " + infantilValue + " " + todosValues + " " + pcdValues + " " + lgbtqValues)
     // console.warn(kms)
     // console.warn(colorOnline)
-    // console.warn(ansiedadeValue + " " + tocValues + " " + burnoutValues + " " + tagValues + " " + casamentoValues + " " + alcoolismoValues)
+    console.warn(ansiedadeValue + " " + tocValues + " " + burnoutValues + " " + tagValues + " " + casamentoValues + " " + alcoolismoValues + " " + IdosoValue + " " + casaisValue + " " + infantilValue + " " + todosValues + " " + pcdValues + " " + lgbtqValues)
+    // console.warn(IdosoValue + " " + casaisValue + " " + infantilValue + " " + todosValues + " " + pcdValues + " " + lgbtqValues)
 
+    FuncDadosCard(kms, infantilValue, IdosoValue, casaisValue, todosValues, lgbtqValues, pcdValues, ansiedadeValue, tocValues, burnoutValues, tagValues, casamentoValues, alcoolismoValues)
 
     return (
         <SafeAreaView style={style["Main"]}>
@@ -360,7 +374,7 @@ export default ({ navigation }) => {
 
                 <View style={style["SessionCenterButtonAplicar"]}>
 
-                    <TouchableHighlight onPress={(() => setAll())}>
+                    <TouchableHighlight onPress={(() => sendSearch())}>
                         <View style={style["ButtonsAplicar"]}>
                             <Text style={{ color: "white", fontSize: RFPercentage(3) }}>APLICAR</Text>
                         </View>

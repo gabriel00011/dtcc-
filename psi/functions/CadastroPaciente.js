@@ -64,7 +64,7 @@ export const FuncDadosPac3 = (cep, rua, numero, complemento, bairro, cidade, est
 export const Cadastrar = () => {
     try {
 
-        axios.post('http://192.168.15.223/backend', {
+        axios.post('http://192.168.15.223/dadospaciente', {
 
             email: DadosPaciente.email,
             pass: DadosPaciente.pass,

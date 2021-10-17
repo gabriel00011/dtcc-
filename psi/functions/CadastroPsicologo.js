@@ -58,7 +58,7 @@ export function Cadastrar() {
 
     try {
 
-        axios.post('http://192.168.15.223/backend', {
+        axios.post('http://192.168.15.223/dadospsicologo', {
 
             email: DadosPsicologo.email,
             pass: DadosPsicologo.pass,

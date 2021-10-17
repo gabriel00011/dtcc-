@@ -17,7 +17,6 @@ export default ({ navigation }) => {
     const [passwordValue, setPasswordInput] = useState("")
     const [passwordConfirmValue, setConfirmPasswordInput] = useState("")
 
-
     FuncDadosPac1(emailValue, passwordValue, passwordConfirmValue)
 
     return (

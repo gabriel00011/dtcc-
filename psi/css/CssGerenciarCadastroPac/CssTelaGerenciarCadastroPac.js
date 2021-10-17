@@ -3,11 +3,12 @@ import React from "react"
 import { StyleSheet } from "react-native"
 
 export const style = StyleSheet.create({
+    
     // Session principal - pai
     Main: {
         flex: 1,
-        // borderWidth: 1,
-        // borderColor: "black",
+        // borderWidth: 5,
+        // borderColor: "yellow",
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center"
