@@ -1,17 +1,38 @@
 import React from "react"
-
 import axios from "axios"
-import { requireNativeComponent } from "react-native"
+export const firebase = require('firebase')
 
-const DadosPaciente = {}
+export const DadosPaciente = {}
+
+// export function send() {
+//     const firebaseConfiga = {
+//         apiKey: "AIzaSyACneTH-9jieXJTWiMRZ7tkL0E-Fq-1IcU",
+//         authDomain: "loginpaciente-4671e.firebaseapp.com",
+//         projectId: "loginpaciente-4671e",
+//         storageBucket: "loginpaciente-4671e.appspot.com",
+//         messagingSenderId: "412155378549",
+//         appId: "1:412155378549:web:83b3aef86f6ec174d8313c"
+//     };
+
+
+//     const app = firebase.initializeApp(firebaseConfiga)
+
+//     firebase.auth().createUserWithEmailAndPassword(DadosPaciente.email, DadosPaciente.pass)
+//         .then(() => {
+//             // nav()
+//             console.warn("sucesso")
+//         }).catch((err) => {
+//             console.warn(err)
+//         })
+// }
+
+
 
 export const FuncDadosPac1 = (email, pass, passconfirm) => {
 
     DadosPaciente.email = email
     DadosPaciente.pass = pass
     DadosPaciente.passconfirm = passconfirm
-
-    // console.warn(DadosPaciente.email, DadosPaciente.pass, DadosPaciente.passconfirm)
 
 }
 
@@ -44,7 +65,7 @@ export const FuncDadosPac2 = (nome, sobrenome, cpf, data, rg, telefone, celular,
     DadosPaciente.genero = genero
     DadosPaciente.sexo = sexo
 
-    // console.warn(DadosPaciente.nome, DadosPaciente.sobrenome, DadosPaciente.cpf, DadosPaciente.rg, DadosPaciente.telefone, DadosPaciente.celular, DadosPaciente.genero, DadosPaciente.sexo)
+
 }
 
 export const FuncDadosPac3 = (cep, rua, numero, complemento, bairro, cidade, estado) => {
@@ -56,7 +77,7 @@ export const FuncDadosPac3 = (cep, rua, numero, complemento, bairro, cidade, est
     DadosPaciente.cidade = cidade
     DadosPaciente.estado = estado
 
-    // console.warn(DadosPaciente.cep, DadosPaciente.rua, DadosPaciente.numero, DadosPaciente.complemento, DadosPaciente.bairro, DadosPaciente.cidade, DadosPaciente.estado)
+
 }
 
 

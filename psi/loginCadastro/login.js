@@ -1,12 +1,14 @@
 import React, { useState } from "react"
 
+const { firebase } = require("../functions/CadastroPsicologo")
+
 import {
     View, SafeAreaView, TextInput,
-    Button, TouchableHighlight, ScrollView
+    Button, TouchableHighlight, ScrollView,
+    Image
 } from "react-native"
 
 import { RadioButton } from "react-native-paper"
-
 import { Text } from "react-native-elements"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 
@@ -20,13 +22,47 @@ import { estilo } from "../css/login"
 
 const Stack = createNativeStackNavigator()
 
+
 export default ({ navigation }) => {
+
+    function MainScreenPsicologo() {
+        navigation.replace("TelaPerfilPsi")
+    }
+
+    function MainScreenPaciente() {
+        navigation.replace("TelaPerfil1")
+    }
+
 
     const [emailValue, setEmailInput] = useState("")
     const [passwordValue, setPasswordInput] = useState("")
-    const [checked, setChecked] = useState("second")
+    const [checked, setChecked] = useState("paciente")
+
+
+    function login() {
+
+        firebase.auth().signInWithEmailAndPassword(emailValue, passwordValue)
+            .then(() => {
+
+                if (checked == "paciente") {
+                    MainScreenPaciente()
+                }
+
+                if (checked == "psicologo") {
+                    MainScreenPsicologo()
+                }
+
+                console.warn("sucesso")
+            }).catch((err) => {
+                console.log(err)
+            })
+    }
+
 
     FuncLogin(emailValue, passwordValue)
+
+    console.log(checked)
+    console.log(emailValue)
 
     return (
 
@@ -38,7 +74,7 @@ export default ({ navigation }) => {
 
                 {/* Logo  */}
                 <View style={estilo.Logo}>
-                    <Text h1>Logo</Text>
+                    <Image style={{ width: "100%", height: "100%" }} source={require('../assets/logo.jpeg')} />
                 </View>
 
                 <View style={estilo.ButtonSession}>
@@ -64,8 +100,8 @@ export default ({ navigation }) => {
                             <RadioButton
                                 color="#6A5ACD"
                                 uncheckedColor="#A9A9A9"
-                                status={checked === "masculino" ? "checked" : "unchecked"}
-                                onPress={() => setChecked('masculino')} />
+                                status={checked === "paciente" ? "checked" : "unchecked"}
+                                onPress={() => setChecked('paciente')} />
                             <Text style={{ fontSize: 15 }}>Paciente   </Text>
                         </View>
 
@@ -73,14 +109,14 @@ export default ({ navigation }) => {
                             <RadioButton
                                 color="#6A5ACD"
                                 uncheckedColor="#A9A9A9"
-                                status={checked === 'feminino' ? 'checked' : 'unchecked'}
-                                onPress={() => setChecked('feminino')} value="Psicologo"
+                                status={checked === 'psicologo' ? 'checked' : 'unchecked'}
+                                onPress={() => setChecked('psicologo')} value="Psicologo"
                             /><Text style={{ fontSize: 15 }}>Psicologo </Text>
                         </View>
 
                         <View style={estilo.InputsSession}>
 
-                            <TextInput style={estilo.Inputs} onChangeText={(email) => setEmailInput(email)}
+                            <TextInput style={estilo.Inputs} onChangeText={(email) => setEmailInput(email + checked)}
                                 placeholder=" E-mail" />
                             <Text></Text>
 
@@ -89,7 +125,7 @@ export default ({ navigation }) => {
 
                         </View>
 
-                        <TouchableHighlight underlayColor="#6A5ACD" onPress={() => Cadastrar()}>
+                        <TouchableHighlight underlayColor="#6A5ACD" onPress={() => login()}>
                             <View style={estilo.ButtonLogIn}>
                                 <Text style={{ color: "white" }} h4>Entrar</Text>
                             </View>

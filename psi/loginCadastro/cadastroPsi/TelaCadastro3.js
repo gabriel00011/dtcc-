@@ -1,14 +1,38 @@
 import React, { useState } from "react"
-
+// const firebase = require('firebase')
 import { View, SafeAreaView, TouchableHighlight, TextInput, Picker } from "react-native"
 import { Text } from "react-native-elements"
+const {firebase} = require("../../functions/CadastroPsicologo")
 
 // importação componente de estilização
 import { style } from "../../css/CssCadastroPsi/CssTelaCadastro3"
 
-import { FuncDadosPsi3, Cadastrar } from "../../functions/CadastroPsicologo"
+import { FuncDadosPsi3, Cadastrar, DadosPsicologo } from "../../functions/CadastroPsicologo"
 
 export default ({ navigation }) => {
+
+    function nav() {
+        navigation.replace("Login")
+    }
+
+    function sendL() {
+
+
+        firebase.auth().createUserWithEmailAndPassword(DadosPsicologo.email, DadosPsicologo.pass)
+            .then(() => {
+                // Cadastrar()
+                nav()
+                console.log("sucesso")
+            }).catch((error) => {
+                console.warn(error)
+            })
+
+
+    }
+
+    console.warn(DadosPsicologo.email)
+
+
 
     const [cepValue, setCepInput] = useState("")
     const [ruaValue, setRuaInput] = useState("")
@@ -19,6 +43,7 @@ export default ({ navigation }) => {
     const [selectedValue, setSelectedValue] = useState("")
 
     FuncDadosPsi3(cepValue, ruaValue, NumeroValue, complementosValue, bairroValue, cidadeValue, selectedValue)
+
 
     return (
 
@@ -100,7 +125,7 @@ export default ({ navigation }) => {
                     </View>
                 </TouchableHighlight>
 
-                <TouchableHighlight underlayColor="none" onPress={() => Cadastrar()}>
+                <TouchableHighlight underlayColor="none" onPress={() => sendL()} >
                     <View style={style["Buttons"]}>
                         <Text style={{ color: "white" }}>Finalizar</Text>
                     </View>
@@ -109,3 +134,4 @@ export default ({ navigation }) => {
         </SafeAreaView>
     )
 }
+

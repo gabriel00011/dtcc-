@@ -12,12 +12,13 @@ import { FuncDadosPac1, ComfirmValuePassword } from "../../functions/CadastroPac
 
 export default ({ navigation }) => {
 
-    const [checked, setChecked] = useState("first")
+    const [checked, setChecked] = useState("paciente")
     const [emailValue, setEmailInput] = useState("")
     const [passwordValue, setPasswordInput] = useState("")
     const [passwordConfirmValue, setConfirmPasswordInput] = useState("")
 
     FuncDadosPac1(emailValue, passwordValue, passwordConfirmValue)
+
 
     return (
         <SafeAreaView style={style["Main"]}>
@@ -33,8 +34,8 @@ export default ({ navigation }) => {
                     <RadioButton
                         color="#6A5ACD"
                         uncheckedColor="#A9A9A9"
-                        status={checked === "first" ? "checked" : "unchecked"}
-                        onPress={() => setChecked('first')} />
+                        status={checked === "paciente" ? "checked" : "unchecked"}
+                        onPress={() => setChecked('paciente')} />
                     <Text style={{ fontSize: 15 }}>Paciente               {/*fim*/}
                     </Text>
                 </View>
@@ -59,7 +60,7 @@ export default ({ navigation }) => {
 
                 <TextInput
                     style={style["Inputs"]}
-                    onChangeText={(email) => setEmailInput(email)}
+                    onChangeText={(email) => setEmailInput(email + checked)}
                     placeholder="E-mail" />
 
                 <TextInput

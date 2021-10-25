@@ -25,17 +25,16 @@ export default function App() {
 
   return (
     <>
-
       <NavigationContainer>
 
         <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
 
-          {/* <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="cadastroPsi" component={CadastroPsi} />
 
-          <Stack.Screen name="Mapa" component={Map} /> */}
-          {/* <Stack.Screen name="GerenciarCadastroPac" component={GerenciarCadastroPac} />
-          <Stack.Screen name="TelaPerfil1" component={TelaPerfilPaci} /> */}
+          <Stack.Screen name="Mapa" component={Map} />
+          <Stack.Screen name="GerenciarCadastroPac" component={GerenciarCadastroPac} />
+          <Stack.Screen name="TelaPerfil1" component={TelaPerfilPaci} />
           <Stack.Screen name="Card" component={Card} />
           <Stack.Screen name="Card2" component={Card2} />
 

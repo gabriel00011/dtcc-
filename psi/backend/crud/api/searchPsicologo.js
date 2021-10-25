@@ -1,3 +1,5 @@
+const firebase = require("firebase")
+
 module.exports = {
     searchPsicologo: (req, res, next) => {
         const { kms, idoso, casais, lgbtq, pcd, infantil, ansiedade, toc, burnout, tag, casamento, alcoolismo } = req.body
@@ -5,7 +7,8 @@ module.exports = {
 
         // console.log(req.query.idoso)
 
-        res.json({ nome: idoso })
         // console.log(idoso)
-    }
+    },
+    firebase
 }
+

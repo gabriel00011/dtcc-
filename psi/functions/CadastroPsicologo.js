@@ -1,8 +1,32 @@
 import React from "react"
-
 import axios from "axios"
+export const firebase = require('firebase')
 
-const DadosPsicologo = {}
+let firebaseConfiga = {
+    apiKey: "AIzaSyACneTH-9jieXJTWiMRZ7tkL0E-Fq-1IcU",
+    authDomain: "loginpaciente-4671e.firebaseapp.com",
+    projectId: "loginpaciente-4671e",
+    storageBucket: "loginpaciente-4671e.appspot.com",
+    messagingSenderId: "412155378549",
+    appId: "1:412155378549:web:83b3aef86f6ec174d8313c"
+};
+
+
+// const app = firebase.initializeApp(firebaseConfiga)
+
+if (firebase.apps.length === 0) {
+
+    firebase.initializeApp(firebaseConfiga);
+
+}
+
+
+
+
+
+
+export const DadosPsicologo = {}
+
 
 export const FuncDadosPsi1 = (email, pass, passconfirm) => {
 
@@ -10,7 +34,7 @@ export const FuncDadosPsi1 = (email, pass, passconfirm) => {
     DadosPsicologo.pass = pass
     DadosPsicologo.passconfirm = passconfirm
 
-    // console.warn(DadosPsicologo.email, DadosPsicologo.pass, DadosPsicologo.passconfirm)
+
 }
 
 // Função de confirmação de senha
@@ -39,7 +63,6 @@ export const FuncDadosPsi2 = (nome, sobrenome, cpf, crp, telefone, celular, gene
     DadosPsicologo.genero = genero
     DadosPsicologo.sexo = sexo
 
-    // console.warn(DadosPsicologo.nome, DadosPsicologo.sobrenome, DadosPsicologo.cpf, DadosPsicologo.crp, DadosPsicologo.telefone, DadosPsicologo.celular, DadosPsicologo.genero, DadosPsicologo.sexo)
 }
 
 export const FuncDadosPsi3 = (cep, rua, numero, complemento, bairro, cidade, estado) => {
@@ -51,7 +74,6 @@ export const FuncDadosPsi3 = (cep, rua, numero, complemento, bairro, cidade, est
     DadosPsicologo.cidade = cidade
     DadosPsicologo.estado = estado
 
-    // console.warn(DadosPsicologo.cep, DadosPsicologo.rua, DadosPsicologo.numero, DadosPsicologo.complemento, DadosPsicologo.bairro, DadosPsicologo.cidade, DadosPsicologo.estado)
 }
 
 export function Cadastrar() {

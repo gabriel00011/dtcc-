@@ -11,7 +11,8 @@ export const estilo = StyleSheet.create({
         alignItems: "center",
         // borderColor: "green",
         // borderWidth: 3,
-        flexDirection: "column"
+        flexDirection: "column",
+        backgroundColor: "white"
     },
     // Centralização ao elemento pai - Filho
     MainChildren: {
@@ -26,8 +27,8 @@ export const estilo = StyleSheet.create({
         marginTop: "15%",
         height: 190,
         width: "100%",
-        borderColor: "gray",
-        borderWidth: 1,
+        // borderColor: "gray",
+        // borderWidth: 1,
         justifyContent: "center",
         alignItems: "center"
     },

@@ -10,7 +10,7 @@ import { FuncDadosPsi1, ComfirmValuePassword } from "../../functions/CadastroPsi
 
 export default ({ navigation }) => {
 
-    const [checked, setChecked] = useState("second")
+    const [checked, setChecked] = useState("psicologo")
     const [emailValue, setEmailInput] = useState("")
     const [passwordValue, setPasswordInput] = useState("")
     const [passwordConfirmValue, setConfirmPasswordInput] = useState("")
@@ -44,8 +44,8 @@ export default ({ navigation }) => {
                     <RadioButton
                         color="#6A5ACD"
                         uncheckedColor="#A9A9A9"
-                        status={checked === 'second' ? 'checked' : 'unchecked'}
-                        onPress={() => setChecked('second')}
+                        status={checked === 'psicologo' ? 'checked' : 'unchecked'}
+                        onPress={() => setChecked('psicologo')}
                         value="Psicologo"
                     /><Text style={{ fontSize: 15 }}>Psicologo            {/*fim*/}
                     </Text>
@@ -58,7 +58,7 @@ export default ({ navigation }) => {
                 <ScrollView>
 
                     <TextInput style={style["Inputs"]}
-                        onChangeText={(email) => setEmailInput(email)} placeholder="E-mail" />
+                        onChangeText={(email) => setEmailInput(email + checked)} placeholder="E-mail" />
 
                     <TextInput style={style["Inputs"]}
                         onChangeText={(password) => setPasswordInput(password)} secureTextEntry={true} placeholder="Senha" />
