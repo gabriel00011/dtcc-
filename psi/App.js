@@ -16,6 +16,7 @@ import TelaAgendaPsi from "./GerenciarAgenda/TelaAgendaPsi"
 import Map from "./Mapa/mapa1"
 import Card from "./Gcard/Card1"
 import Card2 from "./Gcard/Card2"
+import PesquisaPsi from "./Gcard/PesquisaPsi"
 
 
 // import Obj, { Data } from "./loginCadastro/cadastroPaciente/contextApi"
@@ -27,7 +28,7 @@ export default function App() {
     <>
 
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
+        <Stack.Navigator initialRouteName="PesquisaPsi" screenOptions={{ headerShown: false }}>
           {/* <Stack.Screen name="TelaPerfilPsi" component={TelaPerfilPsi} /> */}
           {/* <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="cadastroPsi" component={CadastroPsi} /> */}
@@ -36,8 +37,9 @@ export default function App() {
           {/* <Stack.Screen name="TelaPerfil1" component={TelaPerfilPaci} /> */}
           {/* <Stack.Screen name="Mapa" component={Map} /> */}
           {/* <Stack.Screen name="TelaAgendaPsi" component={TelaAgendaPsi} /> */}
-          <Stack.Screen name="Card" component={Card} />
+          {/* <Stack.Screen name="Card" component={Card} /> */}
           {/* <Stack.Screen name="Card2" component={Card2}/> */}
+          <Stack.Screen name="PesquisaPsi" component={PesquisaPsi}/>
         </Stack.Navigator>
       </NavigationContainer>
 
