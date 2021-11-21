@@ -9,6 +9,7 @@ import { style } from "../../css/CssCadastroPsi/CssTelaCadastro3"
 
 
 import { FuncDadosPac3, Cadastrar, DadosPaciente } from "../../functions/CadastroPaciente"
+import cadastro from "../cadastroPsi/cadastro"
 
 export default ({ navigation }) => {
 
@@ -28,13 +29,15 @@ export default ({ navigation }) => {
 
     FuncDadosPac3(cepValue, ruaValue, NumeroValue, complementosValue, bairroValue, cidadeValue, selectedValue)
 
+// função de cadastro email e senha para login
 
     function send() {
 
         firebase.auth().createUserWithEmailAndPassword(DadosPaciente.email, DadosPaciente.pass)
             .then(() => {
+                Cadastrar()
                 nav()
-                console.warn("sucesso")
+                // console.warn("sucesso")
             }).catch((err) => {
                 console.warn(err)
             })
@@ -123,6 +126,7 @@ export default ({ navigation }) => {
                         <Text style={{ color: "white" }}>Finalizar</Text>
                     </View>
                 </TouchableHighlight>
+                
             </View>
         </SafeAreaView>
     )

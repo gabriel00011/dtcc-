@@ -64,9 +64,9 @@ export default ({ navigation }) => {
                         onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
                     >
                         <Picker.Item label="Não selecionado" />
-                        <Picker.Item label="Transgênero" value="Transgenero" />
-                        <Picker.Item label="Não binário" value="Nao binario" />
-                        <Picker.Item label="Cisgênero" value="Cisgenero" />
+                        <Picker.Item label="Transgênero" value="transgenero" />
+                        <Picker.Item label="Não binário" value="nao binario" />
+                        <Picker.Item label="Cisgênero" value="cisgenero" />
                     </Picker>
 
 

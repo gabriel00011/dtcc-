@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react"
+import React, { useState, useContext, useMemo } from "react"
 
 import { View, SafeAreaView, TextInput, Button, TouchableHighlight, ScrollView, Picker } from "react-native"
 import { Text } from "react-native-elements"
@@ -8,6 +8,7 @@ import DatePicker from 'react-native-datepicker'
 // importação de componente de estilização
 import { style } from "../../css/CssCadastroPac/CssCadastroPac2"
 import { FuncDadosPac2 } from "../../functions/CadastroPaciente"
+
 
 
 export default ({ navigation }) => {
@@ -21,6 +22,18 @@ export default ({ navigation }) => {
     const [celValue, setCelInput] = useState("")
     const [selectedValue, setSelectedValue] = useState("");
     const [dateValue, setDateValue] = useState("")
+
+    const memoState = useMemo(() => {
+        setNameInput()
+        setMiddlenameInput()
+        setCpfInput()
+        setRgInput()
+        setTelefoneInput()
+        setCelInput()
+        setSelectedValue()
+        setDateValue()
+
+    }, [nameValue, middlenameValue, cpfValue, rgValue, telefoneValue, celValue, selectedValue, dateValue])
 
     FuncDadosPac2(nameValue, middlenameValue, cpfValue, dateValue, rgValue, telefoneValue, celValue, selectedValue, checked)
 
@@ -94,6 +107,7 @@ export default ({ navigation }) => {
                 <DatePicker
                     format="DD/MM/YYYY"
                     date={dateValue}
+                    androidMode="spinner"
                     style={style["Inputs"]}
                     onDateChange={(valor) => setDateValue(valor)}
                     placeholder="Data de Nascimento"
@@ -122,6 +136,8 @@ export default ({ navigation }) => {
                 </TouchableHighlight>
 
             </View>
+
+            {memoState}
         </SafeAreaView>
     )
 }

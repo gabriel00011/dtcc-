@@ -13,7 +13,14 @@ import { UpdateDadosPsicologo, FuncDadosPsi1, FuncDadosPsi2, FuncDadosPsi3 } fro
 // importação de componente de estilização
 import { style } from "../../css/CssGerenciarCadastroPsi/TelaGerenciarCadastroPsi1"
 
-export default ({ navigation }) => {
+export default ({ route, navigation }) => {
+
+    const { dadosId } = route.params
+
+    const dataPsiId = JSON.stringify(dadosId)
+    const dataParseId = JSON.parse(dataPsiId)
+    
+    console.log(dataParseId[0]?.psi_in_codigo)
 
     const [nameValue, setNameInput] = useState("")
     const [middlenameValue, setMiddlenameInput] = useState("")

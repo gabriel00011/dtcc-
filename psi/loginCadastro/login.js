@@ -13,6 +13,9 @@ import { Text } from "react-native-elements"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 
 import { FuncLogin, Cadastrar } from "../functions/login"
+import { getDados, session, SessionDadosPsi } from "../functions/getSessionPsi"
+
+// import { SessionDadosPsi } from "../functions/getSessionPsi"
 
 // importação tela cadastroPsi
 import CadastroPsi from "./cadastroPsi/cadastro"
@@ -30,7 +33,7 @@ export default ({ navigation }) => {
     }
 
     function MainScreenPaciente() {
-        navigation.replace("TelaPerfil1")
+        navigation.replace("Mapa")
     }
 
 
@@ -50,6 +53,7 @@ export default ({ navigation }) => {
 
                 if (checked == "psicologo") {
                     MainScreenPsicologo()
+                    session()
                 }
 
                 console.warn("sucesso")
@@ -58,11 +62,9 @@ export default ({ navigation }) => {
             })
     }
 
-
+    // funções importadas passagem de parametros
     FuncLogin(emailValue, passwordValue)
-
-    console.log(checked)
-    console.log(emailValue)
+    getDados(emailValue)
 
     return (
 

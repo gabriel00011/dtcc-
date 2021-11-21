@@ -8,7 +8,9 @@ import IconMaterialIcons from "react-native-vector-icons/MaterialIcons"
 // importação de arquivo para estilização
 import { style } from "../css/CssGerenciarAgendaPsi/GerenciarAgenda1"
 
-export default ({ navigation }) => {
+export default ({ route, navigation }) => {
+
+
     return (
         <SafeAreaView style={style["Main"]}>
 

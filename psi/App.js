@@ -18,8 +18,6 @@ import Card from "./Gcard/Card1"
 import Card2 from "./Gcard/Card2"
 
 
-// import Obj, { Data } from "./loginCadastro/cadastroPaciente/contextApi"
-
 export default function App() {
   const Stack = createNativeStackNavigator()
 
@@ -38,7 +36,7 @@ export default function App() {
           <Stack.Screen name="Card" component={Card} />
           <Stack.Screen name="Card2" component={Card2} />
 
-          <Stack.Screen name="TelaAgendaPsi" component={TelaAgendaPsi} />
+          <Stack.Screen name="TelaAgendaPsi" component={TelaAgendaPsi} /> 
           <Stack.Screen name="TelaPerfilPsi" component={TelaPerfilPsi} />
           <Stack.Screen name="GerenciarCadastroPsi" component={GerenciarCadastroPsi} />
 

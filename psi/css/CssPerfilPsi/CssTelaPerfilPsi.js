@@ -1,6 +1,7 @@
 import React from "react"
 
 import { StyleSheet } from "react-native"
+import { PricingButton } from "react-native-elements/dist/pricing/PricingCard"
 
 export const style = StyleSheet.create({
     // Elemento pai
@@ -14,10 +15,10 @@ export const style = StyleSheet.create({
 
     // centralziar View
     SessionCenter: {
-        flex: 1,
+        height: 2000,
         width: "90%",
         // borderColor: "black",
-        // borderWidth: 1
+        // borderWidth: 2
     },
 
     // Session botões de Agenda e Conta
@@ -179,17 +180,20 @@ export const style = StyleSheet.create({
 
     // Session de tabela
     SessionTable: {
-        height: 100,
+        flexDirection: "column",
+        // justifyContent:"space-between",
+        // flex: 1,
+        height: 800,
         width: "100%",
-        borderColor: "brown",
-        borderWidth: 1,
+        // borderColor: "brown",
+        // borderWidth: 1,
     },
 
     // Session de botões de view da tabela
     SessionButtonsTable: {
         width: "100%",
-        borderColor: "yellow",
-        borderWidth: 1,
+        // borderColor: "yellow",
+        // borderWidth: 1,
         flexDirection: "row",
         justifyContent: 'space-between'
     },
@@ -213,5 +217,110 @@ export const style = StyleSheet.create({
         alignItems: "center",
         borderRadius: 5
     },
+    OrdersDay: {
+        height: 170,
+        width: "100%",
+        flexDirection: "row",
+        justifyContent: "space-evenly",
+        alignItems: "center",
+        // borderWidth: 1,
+        // borderColor: "blue",
+        marginBottom: 30
+    },
+
+    OrderButtons: {
+        height: 50,
+        width: "100%",
+        // borderWidth: 1,
+        // borderColor: "blue",
+        flexWrap: "wrap",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+        marginBottom: 90
+    },
+    OrderUpdate: {
+        flexWrap: "wrap",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+        // borderWidth: 1,
+        // borderColor: "red",
+        marginTop: 10,
+        marginBottom: 30
+    },
+    FieldData: {
+        height: 40,
+        width: 80,
+        borderColor: "#7B68EE",
+        borderWidth: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: 35
+    },
+
+    buttonHour: {
+        paddingLeft: 7,
+        paddingBottom: 5,
+        paddingRight: 7,
+        paddingTop: 5,
+        backgroundColor: "#7B68EE",
+        borderRadius: 3
+
+    },
+    setHour: {
+        flexDirection: "row",
+        justifyContent: "space-around",
+        alignItems: "center",
+        // borderColor: "#7B68EE",
+        // borderWidth: 1,
+        width: "60%"
+    },
+    SameButton: {
+        width: 200,
+        paddingTop: 5,
+        paddingBottom: 5,
+        backgroundColor: "#7B68EE",
+        borderRadius: 3,
+        alignItems: "center",
+        marginTop: 20
+    },
+    orderHous: {
+        flex: 1,
+        // borderColor: "blue",
+        // borderWidth: 1,
+        width: 45,
+        flexDirection: "column",
+        // justifyContent: "center",
+        alignItems: "center"
+    },
+
+    orderUpAndDelte: {
+        width: "100%",
+        flexDirection: "row",
+        justifyContent: "space-evenly"
+    },
+
+    buttonUpAndDel: {
+        width: 150,
+        paddingTop: 5,
+        paddingBottom: 5,
+        backgroundColor: "#7B68EE",
+        borderRadius: 3,
+        alignItems: "center",
+        marginTop: 20
+    },
+
+    styleHour: {
+        borderWidth: 2,
+        borderColor: "gray",
+        borderRadius: 25,
+        width: 45,
+        marginBottom: 5,
+        justifyContent: "center",
+        alignItems: "center",
+        textAlign: "center"
+    }
+
 })
 

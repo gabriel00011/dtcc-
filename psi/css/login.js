@@ -13,7 +13,7 @@ export const estilo = StyleSheet.create({
         // borderWidth: 3,
         flexDirection: "column",
         backgroundColor: "white"
-    },
+},
     // Centralização ao elemento pai - Filho
     MainChildren: {
         flex: 1,

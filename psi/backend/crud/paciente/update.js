@@ -1,3 +1,5 @@
+const { con } = require("../source/mysql")
+
 module.exports = {
     updatePaciente: (req, res, next) => {
 

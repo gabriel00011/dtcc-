@@ -22,9 +22,6 @@ if (firebase.apps.length === 0) {
 
 
 
-
-
-
 export const DadosPsicologo = {}
 
 

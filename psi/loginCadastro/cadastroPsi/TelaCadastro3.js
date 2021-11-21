@@ -2,7 +2,7 @@ import React, { useState } from "react"
 // const firebase = require('firebase')
 import { View, SafeAreaView, TouchableHighlight, TextInput, Picker } from "react-native"
 import { Text } from "react-native-elements"
-const {firebase} = require("../../functions/CadastroPsicologo")
+const { firebase } = require("../../functions/CadastroPsicologo")
 
 // importação componente de estilização
 import { style } from "../../css/CssCadastroPsi/CssTelaCadastro3"
@@ -20,9 +20,8 @@ export default ({ navigation }) => {
 
         firebase.auth().createUserWithEmailAndPassword(DadosPsicologo.email, DadosPsicologo.pass)
             .then(() => {
-                // Cadastrar()
+                Cadastrar()
                 nav()
-                console.log("sucesso")
             }).catch((error) => {
                 console.warn(error)
             })
