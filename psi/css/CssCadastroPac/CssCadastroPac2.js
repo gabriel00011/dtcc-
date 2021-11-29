@@ -8,7 +8,7 @@ export const style = StyleSheet.create({
         flex: 1,
         // borderWidth: 1,
         // borderColor: "yellow",
-        flexDirection:"column",
+        flexDirection: "column",
         justifyContent: "space-evenly"
     },
 
@@ -59,5 +59,17 @@ export const style = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         borderRadius: 5,
-    }
+    },
+    orderDate: {
+        width: "100%",
+        height: 40,
+        // borderColor: "#A9A9A9",
+        // borderWidth: 2,
+        // borderRadius: 4,
+        marginBottom: 10,
+        flexDirection: "row",
+        justifyContent: "space-around",
+        alignItems: "center"
+    },
+
 })

@@ -23,9 +23,6 @@ import CadastroPsi from "./cadastroPsi/cadastro"
 // importação da estilização Tela Login
 import { estilo } from "../css/login"
 
-const Stack = createNativeStackNavigator()
-
-
 export default ({ navigation }) => {
 
     function MainScreenPsicologo() {
@@ -33,7 +30,7 @@ export default ({ navigation }) => {
     }
 
     function MainScreenPaciente() {
-        navigation.replace("Mapa")
+        navigation.replace("Card")
     }
 
 
@@ -58,7 +55,7 @@ export default ({ navigation }) => {
 
                 console.warn("sucesso")
             }).catch((err) => {
-                console.log(err)
+                // console.log(err)
             })
     }
 

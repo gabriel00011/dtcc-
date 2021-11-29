@@ -15,12 +15,10 @@ import { style } from "../../css/CssGerenciarCadastroPsi/TelaGerenciarCadastroPs
 
 export default ({ route, navigation }) => {
 
-    const { dadosId } = route.params
+    const { idPsi } = route.params
 
-    const dataPsiId = JSON.stringify(dadosId)
-    const dataParseId = JSON.parse(dataPsiId)
-    
-    console.log(dataParseId[0]?.psi_in_codigo)
+    const id_psiS = JSON.stringify(idPsi)
+    const id_psiP = JSON.parse(id_psiS)
 
     const [nameValue, setNameInput] = useState("")
     const [middlenameValue, setMiddlenameInput] = useState("")
@@ -63,7 +61,7 @@ export default ({ route, navigation }) => {
                         </View>
                     </TouchableHighlight>
 
-                    <TouchableHighlight underlayColor="none" onPress={() => navigation.navigate("TelaAgendaPsi")}>
+                    <TouchableHighlight underlayColor="none" onPress={() => navigation.navigate("TelaAgendaPsi", { idPsi: id_psiP })}>
                         <View style={style["ButtonAgenda"]}>
                             <IconAntDesign name="book" size={25} color="#7B68EE" />
                             <Text style={{ color: "#7B68EE" }}>

@@ -1,7 +1,7 @@
 import React from "react"
 import axios from "axios"
 
-const DadosCard = {}
+export const DadosCard = {}
 
 export const FuncDadosCard = (kms, infantil, idoso, casais, todos, lgbtq, pcd, ansiedade, toc, burnout, tag, casamento, alcoolismo) => {
 
@@ -26,7 +26,7 @@ export const FuncDadosCard = (kms, infantil, idoso, casais, todos, lgbtq, pcd, a
 export function sendSearch() {
 
 
-    axios.post(`http://192.168.15.223/searchPsicologo`, {
+    axios.get(`http://192.168.15.223/searchPsicologo`, {
 
         kms: DadosCard.kms,
         infantil: DadosCard.infantil,

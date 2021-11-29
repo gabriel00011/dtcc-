@@ -27,8 +27,18 @@ export const style = StyleSheet.create({
         marginTop: 30,
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "flex-end",
-        marginBottom: 10
+        justifyContent: "space-between",
+        marginBottom: 10,
+    },
+
+    PhotoName: {
+        width: 100,
+        height: 90,
+        // borderColor: "blue",
+        // borderWidth: 1,
+        flexDirection: 'column',
+        alignItems: "center",
+        justifyContent: "space-between",
     },
 
     Photo: {
@@ -37,9 +47,23 @@ export const style = StyleSheet.create({
         borderColor: "gray",
         borderWidth: 1,
         borderRadius: 100,
-        marginLeft: 20
+        marginLeft: 20,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#6495ED"
     },
 
+    ButtonConta: {
+        height: 40,
+        width: 120,
+        borderWidth: 2,
+        borderColor: "#7B68EE",
+        borderRadius: 5,
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-evenly",
+        marginLeft: 10
+    },
 
     SessionModalidade: {
         width: "100%",

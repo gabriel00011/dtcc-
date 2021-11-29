@@ -138,6 +138,7 @@ export const style = StyleSheet.create({
         width: "100%",
         // borderColor: "blue",
         // borderWidth: 1,
+        flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
         marginTop: "8%"
@@ -153,5 +154,42 @@ export const style = StyleSheet.create({
         borderRadius: 5,
         backgroundColor: "#6A5ACD"
     },
+
+    OrdersDay: {
+        height: 170,
+        width: "100%",
+        flexDirection: "row",
+        justifyContent: "space-evenly",
+        alignItems: "center",
+        // borderWidth: 1,
+        // borderColor: "blue",
+        marginBottom: 30
+    },
+    orderHous: {
+        flex: 1,
+        // borderColor: "blue",
+        // borderWidth: 1,
+        width: 45,
+        flexDirection: "column",
+        // justifyContent: "center",
+        alignItems: "center"
+    },
+    orderWekeendHours: {
+        width: "100%",
+        height: 34,
+        flexDirection: "row",
+        justifyContent: "space-around",
+    },
+
+    styleHour: {
+        borderWidth: 2,
+        borderColor: "gray",
+        borderRadius: 25,
+        width: 45,
+        marginBottom: 5,
+        justifyContent: "center",
+        alignItems: "center",
+        textAlign: "center"
+    }
 
 })

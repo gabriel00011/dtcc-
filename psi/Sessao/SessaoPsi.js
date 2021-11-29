@@ -13,10 +13,10 @@ import { DadosCard } from "../functions/Card1"
 
 export default ({ route, navigation }) => {
 
-    const { idPsi } = route.params
+    const { idpac } = route.params
 
-    const id_psiS = JSON.stringify(idPsi)
-    const id_psiP = JSON.parse(id_psiS)
+    const id_pacS = JSON.stringify(idpac)
+    const id_pacP = JSON.parse(id_pacS)
 
     const [dados, setDados] = useState([])
 
@@ -25,8 +25,23 @@ export default ({ route, navigation }) => {
     try {
 
         useEffect(() => {
-            axios.post(`http://192.168.15.223/showAgenda`, {
-                idPsi: id_psiP
+            axios.post(`http://192.168.15.223/searchPsicologo`, {
+
+                kms: DadosCard.kms,
+                infantil: DadosCard.infantil,
+                idoso: DadosCard.idoso,
+                casais: DadosCard.casais,
+                todos: DadosCard.todos,
+                lgbtq: DadosCard.lgbtq,
+                pcd: DadosCard.pcd,
+
+                ansiedade: DadosCard.ansiedade,
+                toc: DadosCard.toc,
+                burnout: DadosCard.burnout,
+                tag: DadosCard.tag,
+                casamento: DadosCard.casamento,
+                alcoolismo: DadosCard.alcoolismo
+
             })
                 .then(resp => resp.data)
                 .then(res => {
@@ -43,18 +58,11 @@ export default ({ route, navigation }) => {
         <SafeAreaView style={style["Main"]}>
 
             {/* Centralizar View */}
-            <ScrollView style={style["SessionCenter"]}>
+            <View style={style["SessionCenter"]}>
 
                 <View style={style["SessionButtonPerfil"]}>
 
-                    <TouchableHighlight underlayColor="none" onPress={() => navigation.navigate("TelaPerfilPsi")}>
-                        <View style={style["ButtonPerfil"]} >
-                            <IconAntDesign name="profile" size={25} color="#7B68EE" />
-                            <Text style={{ color: "#7B68EE" }}>Perfil</Text>
-                        </View>
-                    </TouchableHighlight>
-
-                    <TouchableHighlight underlayColor="none" onPress={() => navigation.navigate("GerenciarCadastroPsi", { idPsi: id_psiP })}>
+                    <TouchableHighlight underlayColor="none" onPress={() => navigation.navigate("GerenciarCadastroPac")}>
                         <View style={style["ButtonConta"]}>
                             <IconMaterialCommunityIcons name="account-circle" size={25} color="#7B68EE" />
                             <Text style={{ color: "#7B68EE" }}>Conta</Text>
@@ -68,20 +76,20 @@ export default ({ route, navigation }) => {
 
                     {dados.map((value) => (
                         <View style={style["DadosPsi"]}>
-
-                            <View style={style["Dados"]}>
-                                <Text style={{ fontWeight: "bold" }}>{value.pa_st_nome}</Text>
-                                <Text style={{ color: "gray" }}>Dia: {value.age_hora_agendado} ás {value.age_dia_agendado}</Text>
-                                <Text style={{ color: "gray" }}>Celular: {value.pa_st_celular}</Text>
-                            </View>
-
+                            <TouchableHighlight underlayColor="none" onPress={() => { navigation.navigate("Card2", { email: value.psi_st_email, idpac: id_pacP }) }}>
+                                <View style={style["Dados"]}>
+                                    <Text style={{ fontWeight: "bold" }}>{value.psi_st_nome}</Text>
+                                    <Text style={{ color: "gray" }}>{value.psi_st_crp}</Text>
+                                    <Text style={{ color: "gray" }}>{value.end_st_rua}, {value.end_st_numero}, {value.end_st_cidade}, {value.end_st_cep}, {value.end_st_uf}</Text>
+                                </View>
+                            </TouchableHighlight>
                         </View>
                     ))}
 
 
                 </View>
 
-            </ScrollView>
+            </View>
 
         </SafeAreaView >
     )

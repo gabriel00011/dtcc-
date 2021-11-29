@@ -9,8 +9,6 @@ import DatePicker from 'react-native-datepicker'
 import { style } from "../../css/CssCadastroPac/CssCadastroPac2"
 import { FuncDadosPac2 } from "../../functions/CadastroPaciente"
 
-
-
 export default ({ navigation }) => {
 
     const [checked, setChecked] = useState("masculino")
@@ -22,18 +20,6 @@ export default ({ navigation }) => {
     const [celValue, setCelInput] = useState("")
     const [selectedValue, setSelectedValue] = useState("");
     const [dateValue, setDateValue] = useState("")
-
-    const memoState = useMemo(() => {
-        setNameInput()
-        setMiddlenameInput()
-        setCpfInput()
-        setRgInput()
-        setTelefoneInput()
-        setCelInput()
-        setSelectedValue()
-        setDateValue()
-
-    }, [nameValue, middlenameValue, cpfValue, rgValue, telefoneValue, celValue, selectedValue, dateValue])
 
     FuncDadosPac2(nameValue, middlenameValue, cpfValue, dateValue, rgValue, telefoneValue, celValue, selectedValue, checked)
 
@@ -137,7 +123,6 @@ export default ({ navigation }) => {
 
             </View>
 
-            {memoState}
         </SafeAreaView>
     )
 }

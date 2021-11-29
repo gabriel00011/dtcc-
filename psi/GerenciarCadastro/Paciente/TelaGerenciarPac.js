@@ -49,7 +49,7 @@ export default ({ navigation }) => {
                 {/* View Botão Incio */}
                 <View style={style["SessionButtonPerfil"]}>
 
-                    <TouchableHighlight underlayColor="none">
+                    <TouchableHighlight underlayColor="none" onPress={() => navigation.navigate("Card")}>
                         <View style={style["ButtonBack"]}>
                             <Text style={{ marginRight: 10 }}>
                                 <IconAntDesign name="leftcircleo" color="#7B68EE" size={20} />

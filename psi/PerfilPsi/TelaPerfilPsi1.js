@@ -70,7 +70,6 @@ export default ({ navigation }) => {
             axios.get("http://192.168.15.223/getDadosPsicologo/" + email)
                 .then(DadosPsicologo => DadosPsicologo.data)
                 .then(renderDados => {
-                    // setListDados(renderDados)
                     setDataSeg(renderDados.resultSeg)
                     setDataTer(renderDados.resultTer)
                     setDataQua(renderDados.resultQua)
@@ -83,12 +82,18 @@ export default ({ navigation }) => {
                         setDataQua(renderDados.resultQua)
                         setDataQui(renderDados.resultQui)
                         setDataSex(renderDados.resultSex)
-                    }, 2000)
+                    }, 1000)
+
+
+
                 })
 
         } catch (e) {
             console.log(e)
+
         }
+
+
 
     }
 
@@ -180,14 +185,14 @@ export default ({ navigation }) => {
 
                 <View style={style["SessionButtonAgenda"]}>
 
-                    <TouchableHighlight underlayColor="none" onPress={() => navigation.navigate("TelaAgendaPsi")}>
+                    <TouchableHighlight underlayColor="none" onPress={() => navigation.navigate("TelaAgendaPsi", { idPsi: Id_psicologo })}>
                         <View style={style["ButtonAgenda"]} >
                             <IconAntDesign name="book" size={25} color="#7B68EE" />
                             <Text style={{ color: "#7B68EE" }}>Agenda</Text>
                         </View>
                     </TouchableHighlight>
 
-                    <TouchableHighlight underlayColor="none" onPress={() => navigation.navigate("GerenciarCadastroPsi", { dadosId: listDadosPsi })}>
+                    <TouchableHighlight underlayColor="none" onPress={() => navigation.navigate("GerenciarCadastroPsi", { idPsi: Id_psicologo })}>
                         <View style={style["ButtonConta"]}>
                             <IconMaterialCommunityIcons name="account-circle" size={25} color="#7B68EE" />
                             <Text style={{ color: "#7B68EE" }}>Conta</Text>

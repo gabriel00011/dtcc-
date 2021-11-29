@@ -9,6 +9,8 @@ import IconAntDesign from "react-native-vector-icons/AntDesign"
 import IconFeather from "react-native-vector-icons/Feather"
 import { RadioButton } from "react-native-paper"
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize"
+import { DadosLogin } from "../functions/login"
+
 // importação de arquivo para estilização
 import { style } from "../css/CssMapa/CssMapa"
 
@@ -20,10 +22,11 @@ export default ({ navigation }) => {
     const [infantil, setInfantil] = useState(false)
     const [idoso, setIdoso] = useState(false)
     const [casais, setCasais] = useState(false)
-
-    const [colorOnline, setColorOnline] = useState("")
-    const [colorPresencial, setcolorPresencial] = useState("")
-
+    const [dadosPaciente, setDadosPaciente] = useState([])
+    
+    
+    console.log("dados", dadosPaciente)
+    console.log("email", DadosLogin.email)
 
     // valor do checkbox 
     let IdosoValue = ""
@@ -46,21 +49,14 @@ export default ({ navigation }) => {
     // valor do RadioButton 
     let kms = ""
 
-    if (checked == "2km") {
-        kms = "2"
-    }
-
-    if (checked == "10km") {
-        kms = "10"
-    }
-
-    if (checked == "25km") {
-        kms = "25"
-    }
-
-    // console.warn(IdosoValue + casaisValue + infantilValue)
-    // console.warn(kms)
-    // console.warn(colorOnline)
+    useEffect(() => {
+        axios.get("http://192.168.15.223/dadosPaciente/" + DadosLogin.email)
+            .then(resp => resp.data)
+            .then(resp => {
+                setDadosPaciente(resp)
+                console.log(resp)
+            })
+    }, [])
 
     return (
 
@@ -79,7 +75,7 @@ export default ({ navigation }) => {
                             </View>
                         </TouchableHighlight>
 
-                        <TouchableHighlight>
+                        <TouchableHighlight underlayColor="none" onPress={() => navigation.navigate("Card")}>
                             <View>
                                 <IconMaterialCommunityIcons name="account-box-outline" size={30} />
                                 <Text>Card</Text>

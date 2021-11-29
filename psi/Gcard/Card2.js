@@ -1,13 +1,77 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 
-import { SafeAreaView, View, TouchableHighlight } from "react-native"
+import { SafeAreaView, View, TouchableHighlight, ScrollV } from "react-native"
 import { Text } from "react-native-elements"
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize"
 import IconAntDesign from "react-native-vector-icons/AntDesign"
+import axios from "axios"
 
 // importação de arquivo de estilização
 import { style } from "../css/CssCard/CssCard2"
-export default ({ navigation }) => {
+
+export default ({ route, navigation }) => {
+
+    const { email, idpac } = route.params
+
+    const id_pacS = JSON.stringify(idpac)
+    const id_pacP = JSON.parse(id_pacS)
+
+    const stringify = JSON.stringify(email)
+    const parse = JSON.parse(stringify)
+
+    const [listDadosPsi, setListDados] = useState([])
+    const [segData, setDataSeg] = useState([])
+    const [terData, setDataTer] = useState([])
+    const [quaData, setDataQua] = useState([])
+    const [quiData, setDataQui] = useState([])
+    const [sexData, setDataSex] = useState([])
+
+    const [buttonHours, setButtonHours] = useState("")
+    const [dayHours, setDayHours] = useState("")
+
+    console.log(listDadosPsi)
+
+    useEffect(() => {
+
+        try {
+
+            axios.get("http://192.168.15.223/getDadosPsicologo/" + parse)
+                .then(DadosPsicologo => DadosPsicologo.data)
+                .then(renderDados => {
+                    setListDados(renderDados.resultado)
+                    setDataSeg(renderDados.resultSeg)
+                    setDataTer(renderDados.resultTer)
+                    setDataQua(renderDados.resultQua)
+                    setDataQui(renderDados.resultQui)
+                    setDataSex(renderDados.resultSex)
+                })
+
+        } catch (e) {
+
+            console.log(e)
+        }
+
+    }, [])
+
+    try {
+        var Id_psicologo = listDadosPsi[0].psi_in_codigo
+    } catch (e) {
+
+        console.log(e)
+    }
+
+    console.log(Id_psicologo)
+
+    const agendamento = (buttonHours, dayHours, Id_psicologo, id_pacP) => {
+        axios.post("http://192.168.15.223:80/agendaPsi", {
+            hours: buttonHours,
+            day: dayHours,
+            idPsi: Id_psicologo,
+            idPac: id_pacP
+        })
+    }
+
+
     return (
         <SafeAreaView style={style["Main"]}>
 
@@ -36,9 +100,13 @@ export default ({ navigation }) => {
                     </View>
 
                     <View style={{ marginLeft: 10 }}>
-                        <Text>Nome do Psicologo</Text>
-                        <Text>CRP 00/0000</Text>
-                        <Text>0,0 km</Text>
+                        {listDadosPsi.map((value) => (
+                            <View style={{ marginLeft: 10 }}>
+                                <Text>{value.psi_st_nome} {value.psi_st_sobrenome}</Text>
+                                <Text>{value.psi_st_crp}</Text>
+                            </View>
+                        ))}
+
                     </View>
 
                 </View>
@@ -87,13 +155,109 @@ export default ({ navigation }) => {
 
                 </View>
 
-                <View style={style["SessionHorasAgendamento"]}>
-                    <Text>horas</Text>
+                <View style={style["OrdersDay"]}>
+
+                    <View style={{ alignItems: "center" }}>
+                        <Text>seg</Text>
+                        <View style={style["orderHous"]}>
+                            <View style={{ height: 10 }}></View>
+                            {segData.map((value) => (
+
+                                <TouchableHighlight underlayColor="none" onPress={() => {
+                                    setButtonHours(value.hr_segunda)
+                                    setDayHours("Segunda-feira")
+                                }}>
+                                    <View style={style["styleHour"]}>
+                                        <Text key={value.id_segunda}> {value.hr_segunda} </Text>
+                                    </View>
+                                </TouchableHighlight>
+
+                            ))}
+                        </View>
+                    </View>
+
+
+                    <View style={{ alignItems: "center" }}>
+                        <Text>ter</Text>
+                        <View style={style["orderHous"]} >
+                            <View style={{ height: 10 }}></View>
+                            {terData.map((value) => (
+                                <TouchableHighlight underlayColor="none" onPress={() => {
+                                    setButtonHours(value.hr_terca)
+                                    setDayHours("Terça-feira")
+                                }}
+                                >
+                                    <View style={style["styleHour"]}>
+                                        <Text key={value.id_terca}> {value.hr_terca} </Text>
+                                    </View>
+                                </TouchableHighlight>
+                            ))}
+                        </View>
+                    </View>
+
+
+                    <View style={{ alignItems: "center" }}>
+                        <Text>qua</Text>
+                        <View style={style["orderHous"]}>
+                            <View style={{ height: 10 }}></View>
+                            {quaData.map((value) => (
+                                <TouchableHighlight underlayColor="none" onPress={() => {
+                                    setButtonHours(value.hr_quarta)
+                                    setDayHours("Quarta-feira")
+                                }}>
+                                    <View style={style["styleHour"]}>
+                                        <Text key={value.hr_quarta}> {value.hr_quarta} </Text>
+                                    </View>
+                                </TouchableHighlight>
+                            ))}
+                        </View>
+                    </View>
+
+                    <View style={{ alignItems: "center" }}>
+                        <Text>qui</Text>
+                        <View style={style["orderHous"]}>
+                            <View style={{ height: 10 }}></View>
+                            {quiData.map((value) => (
+                                <TouchableHighlight underlayColor="none" onPress={() => {
+                                    setButtonHours(value.hr_quinta)
+                                    setDayHours("Quinta-feira")
+                                }}>
+                                    <View style={style["styleHour"]}>
+                                        <Text key={value.hr_quinta}> {value.hr_quinta} </Text>
+                                    </View>
+                                </TouchableHighlight>
+                            ))}
+                        </View>
+                    </View>
+
+                    <View style={{ alignItems: "center" }}>
+                        <Text>sex</Text>
+                        <View style={style["orderHous"]}>
+                            <View style={{ height: 10 }}></View>
+                            {sexData.map((value) => (
+                                <TouchableHighlight underlayColor="none" onPress={() => {
+                                    setButtonHours(value.hr_sexta)
+                                    setDayHours("Sexta-feira")
+                                }}>
+                                    <View style={style["styleHour"]}>
+                                        <Text key={value.hr_sexta}> {value.hr_sexta} </Text>
+                                    </View>
+                                </TouchableHighlight>
+                            ))}
+                        </View>
+
+                    </View>
+
                 </View>
 
                 <View style={style["SessionCenterButtonAgendar"]}>
 
-                    <TouchableHighlight>
+                    <View style={style["orderWekeendHours"]}>
+                        <Text> Dia: {dayHours}</Text>
+                        <Text> hora: {buttonHours}</Text>
+                    </View>
+
+                    <TouchableHighlight underlayColor="none" onPress={() => { agendamento(buttonHours, dayHours, Id_psicologo, id_pacP) }}>
                         <View style={style["ButtonsAplicar"]}>
                             <Text style={{ color: "white", fontSize: RFPercentage(3) }}>AGENDAR</Text>
                         </View>

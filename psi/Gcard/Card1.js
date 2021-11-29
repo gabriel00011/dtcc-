@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react"
 
-import { SafeAreaView, View, TouchableHighlight, CheckBox } from "react-native"
+import { SafeAreaView, View, TouchableHighlight, CheckBox, TextInput } from "react-native"
 import { Text } from "react-native-elements"
 import { RadioButton } from "react-native-paper"
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize"
+import IconMaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons"
 import IconAntDesign from "react-native-vector-icons/AntDesign"
 import axios from "axios"
 
@@ -12,11 +13,13 @@ import { style } from "../css/CssCard/CssCard"
 
 // funcionalidades
 import { sendSearch, FuncDadosCard } from "../functions/Card1"
+import { DadosLogin } from "../functions/login"
 
 export default ({ navigation }) => {
 
     const [checked, setChecked] = useState("first")
     const [isSelected, setSelection] = useState(false)
+    const [dadosPaciente, setDadosPaciente] = useState([])
 
     const [infantil, setInfantil] = useState(false)
     const [idoso, setIdoso] = useState(false)
@@ -32,6 +35,23 @@ export default ({ navigation }) => {
     const [casamento, setCasamento] = useState(false)
     const [alcoolismo, setalcoolismo] = useState(false)
 
+    useEffect(() => {
+        axios.get("http://192.168.15.223/dadosPaciente/" + DadosLogin.email)
+            .then(resp => resp.data)
+            .then(resp => {
+                setDadosPaciente(resp)
+                console.log(resp)
+            })
+    }, [])
+
+
+    console.log(dadosPaciente)
+
+    try {
+        var id_paciente = dadosPaciente[0]?.pa_in_codigo
+    } catch (e) {
+
+    }
 
     const setAll = () => {
         setIdoso(true)
@@ -50,11 +70,11 @@ export default ({ navigation }) => {
     }
 
     if (idoso == true) {
-        IdosoValue = "idoso"
+        IdosoValue = "A"
     }
 
     if (casais == true) {
-        casaisValue = "casais"
+        casaisValue = "B"
     }
 
 
@@ -76,11 +96,11 @@ export default ({ navigation }) => {
 
 
     if (ansiedade == true) {
-        ansiedadeValue = "ansiedade"
+        ansiedadeValue = "C"
     }
 
     if (toc == true) {
-        tocValues = "toc"
+        tocValues = "D"
     }
 
     if (burnout == true) {
@@ -118,12 +138,12 @@ export default ({ navigation }) => {
     if (todos == true) {
         todosValues = "todos"
         infantilValue = "infantil"
-        IdosoValue = "idoso"
-        casaisValue = "casais"
+        IdosoValue = "A"
+        casaisValue = "B"
         lgbtqValues = "lgbtq"
         pcdValues = "pcd"
-        ansiedadeValue = "ansiedade"
-        tocValues = "toc"
+        ansiedadeValue = "C"
+        tocValues = "D"
         burnoutValues = "burnout"
         tagValues = "tag"
         casamentoValues = "casamento"
@@ -137,6 +157,9 @@ export default ({ navigation }) => {
 
     FuncDadosCard(kms, infantilValue, IdosoValue, casaisValue, todosValues, lgbtqValues, pcdValues, ansiedadeValue, tocValues, burnoutValues, tagValues, casamentoValues, alcoolismoValues)
 
+
+
+
     return (
         <SafeAreaView style={style["Main"]}>
 
@@ -144,13 +167,31 @@ export default ({ navigation }) => {
 
                 <View style={style["SeesionIcon"]}>
 
-                    <TouchableHighlight>
-                        <View>
-                            <IconAntDesign name="search1" size={30} />
+                    <TouchableHighlight underlayColor="none" onPress={() => navigation.navigate("GerenciarCadastroPac")}>
+                        <View style={style["ButtonConta"]}>
+                            <IconMaterialCommunityIcons name="account-circle" size={25} color="#7B68EE" />
+                            <Text style={{ color: "#7B68EE" }}>Conta</Text>
                         </View>
                     </TouchableHighlight>
 
-                    <View style={style["Photo"]}>
+                    <TouchableHighlight underlayColor="none" onPress={() => navigation.navigate("GerenciarCadastroPac")}>
+                        <View style={style["ButtonConta"]}>
+                            <IconAntDesign name="profile" size={25} color="#7B68EE" />
+                            <Text style={{ color: "#7B68EE" }}>Consultas</Text>
+                        </View>
+                    </TouchableHighlight>
+
+                    <View >
+
+                        {dadosPaciente.map((value) => (
+                            <View style={style["PhotoName"]}>
+                                <View style={style["Photo"]}>
+                                    <Text key={value.pa_in_codigo} style={{ fontSize: 25, color: "white" }}>{value.pa_st_nome.charAt().toUpperCase()}</Text>
+                                </View>
+                                <Text key={value.pa_in_codigo} style={{ fontWeight: "bold" }}>{value.pa_st_nome} {value.pa_st_sobrenome}</Text>
+                            </View>
+                        ))}
+
 
                     </View>
 
@@ -180,50 +221,9 @@ export default ({ navigation }) => {
 
                 </View>
 
-
-
                 <View style={style["SessionSelects"]}>
 
                     <View style={style["SessionOrgSelects"]}>
-
-                        <View style={style["RadioButton"]}>
-
-                            <Text style={{ fontWeight: "bold" }}>Distância</Text>
-
-                            <View style={style["AlignRadioButton"]}>
-
-                                <View style={style["AlignSelects"]}>
-                                    <RadioButton
-                                        color="#6A5ACD"
-                                        uncheckedColor="#A9A9A9"
-                                        status={checked === '2km' ? 'checked' : 'unchecked'}
-                                        onPress={() => setChecked('2km')}
-                                    />
-                                    <Text>até 2km</Text>
-                                </View>
-
-                                <View style={style["AlignSelects"]}>
-                                    <RadioButton
-                                        color="#6A5ACD"
-                                        uncheckedColor="#A9A9A9"
-                                        status={checked === '10km' ? 'checked' : 'unchecked'}
-                                        onPress={() => setChecked('10km')}
-                                    />
-                                    <Text>até 10km</Text>
-                                </View>
-
-                                <View style={style["AlignSelects"]}>
-                                    <RadioButton
-                                        color="#6A5ACD"
-                                        uncheckedColor="#A9A9A9"
-                                        status={checked === '25km' ? 'checked' : 'unchecked'}
-                                        onPress={() => setChecked('25km')}
-                                    />
-                                    <Text>até 25km</Text>
-                                </View>
-
-                            </View>
-                        </View>
 
                         {/* Check Box */}
                         <View style={style["Checkbox"]}>
@@ -374,7 +374,8 @@ export default ({ navigation }) => {
 
                 <View style={style["SessionCenterButtonAplicar"]}>
 
-                    <TouchableHighlight onPress={(() => sendSearch())}>
+                    <TouchableHighlight onPress={(() =>
+                        navigation.navigate("sessionPSi", { idpac: id_paciente }))}>
                         <View style={style["ButtonsAplicar"]}>
                             <Text style={{ color: "white", fontSize: RFPercentage(3) }}>APLICAR</Text>
                         </View>

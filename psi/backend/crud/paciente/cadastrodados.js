@@ -33,24 +33,21 @@ module.exports = {
             // insert de dados pessoais 
             con.query(insertDadosPacientePessoais, [nome, sobrenome, thost, cpf, rg, email, telefone, celular, pass, sexo], (err, result) => {
 
-                if (!!result) {
+                con.query(Id_paciente, (err, result, fields) => {
+                    let resultado = JSON.stringify(result)
+                    let result1 = JSON.parse(resultado)
+                    let Id_paciente = result1[0]["max(pa_in_codigo)"]
 
-                    con.query(Id_paciente, (err, result, fields) => {
-                        let resultado = JSON.stringify(result)
-                        let result1 = JSON.parse(resultado)
-                        let Id_paciente = result1[0]["max(pa_in_codigo)"]
-
-                        // insert de dados cadastro 
-                        con.query(insertDadosPacienteEndereco, [Id_paciente, estado, bairro, cidade, rua, complemento, numero, cep], (err, result) => {
-                            console.log(result)
-                            console.log(err)
-                        })
-
+                    // insert de dados cadastro 
+                    con.query(insertDadosPacienteEndereco, [Id_paciente, estado, bairro, cidade, rua, complemento, numero, cep], (err, result) => {
+                        console.log(result)
+                        console.log(err)
                     })
 
+                })
 
-                }
-
+                console.log(result)
+                console.log(err)
 
             })
 
