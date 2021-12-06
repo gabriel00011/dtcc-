@@ -12,7 +12,7 @@ export const estilo = StyleSheet.create({
         // borderColor: "green",
         // borderWidth: 3,
         flexDirection: "column",
-        backgroundColor: "white"
+        backgroundColor:"#FFFFFF"
 },
     // Centralização ao elemento pai - Filho
     MainChildren: {
@@ -21,6 +21,8 @@ export const estilo = StyleSheet.create({
         width: "90%",
         // borderColor: "blue",
         // borderWidth: 1,
+        backgroundColor: "white",
+        backgroundColor:"#FFFFFF"
     },
     // Logo - Filho
     Logo: {

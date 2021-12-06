@@ -53,7 +53,6 @@ export default ({ navigation }) => {
                     session()
                 }
 
-                console.warn("sucesso")
             }).catch((err) => {
                 // console.log(err)
             })

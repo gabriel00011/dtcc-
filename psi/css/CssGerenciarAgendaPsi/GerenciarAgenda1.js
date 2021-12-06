@@ -8,14 +8,16 @@ export const style = StyleSheet.create({
         width: "100%",
         borderWidth: 1,
         borderColor: "green",
-        alignItems: "center"
+        alignItems: "center",
+        backgroundColor:"#FFFFFF"
     },
 
     SessionCenter: {
         flex: 1,
         width: "90%",
         borderColor: "blue",
-        borderWidth: 1
+        borderWidth: 1,
+        backgroundColor:"#FFFFFF"
     },
 
     // Session perfil e agenda

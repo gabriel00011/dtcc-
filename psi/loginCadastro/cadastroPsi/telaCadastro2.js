@@ -78,22 +78,22 @@ export default ({ navigation }) => {
             <View style={style["InputSession"]}>
                
                 <TextInput style={style["Inputs"]}
-                    onChangeText={(name) => setNameInput(name)} placeholder="Nome" />
+                    onChangeText={(name) => setNameInput(name)} placeholder=" Nome" />
 
                 <TextInput style={style["Inputs"]}
-                    onChangeText={(middlename) => setMiddlenameInput(middlename)} placeholder="Sobrenome" />
+                    onChangeText={(middlename) => setMiddlenameInput(middlename)} placeholder=" Sobrenome" />
 
                 <TextInput style={style["Inputs"]}
-                    onChangeText={(cpf) => setCpfInput(cpf)} placeholder="CPF" />
+                    onChangeText={(cpf) => setCpfInput(cpf)} placeholder=" CPF" />
 
                 <TextInput style={style["Inputs"]}
-                    onChangeText={(crp) => setCrpInput(crp)} placeholder="CRP" />
+                    onChangeText={(crp) => setCrpInput(crp)} placeholder=" CRP" />
 
                 <TextInput style={style["Inputs"]}
-                    onChangeText={(tel) => setTelefoneInput(tel)} placeholder="Telefone" />
+                    onChangeText={(tel) => setTelefoneInput(tel)} placeholder=" Telefone" />
 
                 <TextInput style={style["Inputs"]}
-                    onChangeText={(cel) => setCelInput(cel)} placeholder="Celular" />
+                    onChangeText={(cel) => setCelInput(cel)} placeholder=" Ex cel: 5511xxxxxxxx" />
 
             </View>
 

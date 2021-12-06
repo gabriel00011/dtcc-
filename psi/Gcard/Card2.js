@@ -77,26 +77,13 @@ export default ({ route, navigation }) => {
 
             <View style={style["SessionCenter"]}>
 
-                {/* View de search e foto */}
-                <View style={style["SessionPhotoeSearch"]}>
-
-                    <TouchableHighlight>
-                        <View style={{ marginRight: 25 }}>
-                            <IconAntDesign name="search1" size={30} />
-                        </View>
-                    </TouchableHighlight>
-
-                    <View style={style["Photo"]}>
-                        <Text>Foto</Text>
-                    </View>
-
-                </View>
-
                 {/* View de dados Psicologo */}
                 <View style={style["SessionDadosPsi"]}>
 
                     <View style={style["Photo"]}>
-                        <Text>Foto</Text>
+                    {listDadosPsi.map((value) => (
+                            <Text style={{ fontWeight: "bold", fontSize: 25, color: "white" }}> {value.psi_st_nome.charAt().toUpperCase()} </Text>
+                        ))}
                     </View>
 
                     <View style={{ marginLeft: 10 }}>

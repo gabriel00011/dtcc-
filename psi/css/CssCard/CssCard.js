@@ -11,6 +11,7 @@ export const style = StyleSheet.create({
         // borderWidth: 1,
         justifyContent: "center",
         alignItems: "center",
+        backgroundColor:"#FFFFFF"
     },
 
     SessionCenter: {
@@ -18,27 +19,35 @@ export const style = StyleSheet.create({
         width: "90%",
         // borderColor: "blue",
         // borderWidth: 1,
+        backgroundColor:"#FFFFFF"
     },
 
     // Session Icon
     SeesionIcon: {
-        // borderColor: "black",
+        borderColor: "black",
         // borderWidth: 1,
         marginTop: 30,
         flexDirection: "row",
-        alignItems: "center",
+        // alignItems: "center",
+        flexDirection: "column",
         justifyContent: "space-between",
         marginBottom: 10,
     },
+    SessionIconView: {
+        width: "100%",
+        // borderColor: "black",
+        // borderWidth: 1,
+        flexDirection: "row"
+    },
 
     PhotoName: {
-        width: 100,
+        width: "100%",
         height: 90,
         // borderColor: "blue",
         // borderWidth: 1,
-        flexDirection: 'column',
+        flexDirection: 'row',
         alignItems: "center",
-        justifyContent: "space-between",
+        // justifyContent: "space-between",
     },
 
     Photo: {
@@ -47,7 +56,7 @@ export const style = StyleSheet.create({
         borderColor: "gray",
         borderWidth: 1,
         borderRadius: 100,
-        marginLeft: 20,
+        marginRight: 20,
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: "#6495ED"

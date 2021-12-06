@@ -7,7 +7,8 @@ export const style = StyleSheet.create({
         flex: 1,
         // borderWidth: 1,
         // borderColor: "green",
-        alignItems: "center"
+        alignItems: "center",
+        backgroundColor: "#FFFFFF"
     },
 
     // Session de centralização
@@ -15,7 +16,8 @@ export const style = StyleSheet.create({
         flex: 1,
         width: "80%",
         // borderWidth: 1,
-        // borderColor: "black"
+        // borderColor: "black",
+        backgroundColor: "#FFFFFF"
     },
 
     // Session de search e foto
@@ -37,11 +39,13 @@ export const style = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 100,
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        backgroundColor: "#6495ED"
     },
 
 
     SessionDadosPsi: {
+        marginTop: 50,
         height: 100,
         width: "100%",
         flexDirection: "row",

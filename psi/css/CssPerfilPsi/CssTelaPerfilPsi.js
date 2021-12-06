@@ -10,7 +10,8 @@ export const style = StyleSheet.create({
         width: "100%",
         // borderColor: "green",
         // borderWidth: 2,
-        alignItems: "center"
+        alignItems: "center",
+        backgroundColor:"#FFFFFF"
     },
 
     // centralziar View
@@ -19,13 +20,22 @@ export const style = StyleSheet.create({
         width: "90%",
         // borderColor: "black",
         // borderWidth: 2
+        backgroundColor:"#FFFFFF"
     },
 
     // Session botões de Agenda e Conta
     SessionButtonAgenda: {
         marginTop: 35,
-        // height: 50,
         width: "100%",
+        // borderWidth: 1,
+        // borderColor: "red",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center"
+    },
+
+    SessionButtonAgendaB: {
+        width: "70%",
         // borderWidth: 1,
         // borderColor: "red",
         flexDirection: "row"
@@ -71,7 +81,9 @@ export const style = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 300,
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        backgroundColor:"#6495ED",
+        
     },
 
     NomeCrp: {
@@ -139,9 +151,29 @@ export const style = StyleSheet.create({
         height: 110,
         // borderColor: "black",
         // borderWidth: 1,
-        marginTop: 20,
+        marginTop: 50,
+        justifyContent: "center",
+        alignItems: "center",
         // marginBottom: 20,
         flexDirection: "column",
+    },
+
+    SessionGroup0: {
+        // width: 320,
+        // height: 110,
+        // borderColor: "black",
+        // borderWidth: 1,
+        // marginTop: 20,
+        justifyContent: "center",
+        alignItems: "center",
+        // marginBottom: 20,
+        flexDirection: "row",
+    },
+
+
+    centerSelect: {
+        flexDirection: "column",
+        justifyContent: "flex-end"
     },
 
     ButtonGroup1: {
@@ -183,7 +215,7 @@ export const style = StyleSheet.create({
         flexDirection: "column",
         // justifyContent:"space-between",
         // flex: 1,
-        height: 800,
+        height: 900,
         width: "100%",
         // borderColor: "brown",
         // borderWidth: 1,
@@ -228,6 +260,15 @@ export const style = StyleSheet.create({
         marginBottom: 30
     },
 
+    buttonUpdate: {
+        width: "100%",
+        // borderColor: "blue",
+        // borderWidth: 1,
+        flexDirection: "row",
+        justifyContent: "flex-start",
+        alignItems: "center"
+    },
+
     OrderButtons: {
         height: 50,
         width: "100%",
@@ -239,6 +280,7 @@ export const style = StyleSheet.create({
         justifyContent: "space-between",
         marginBottom: 90
     },
+
     OrderUpdate: {
         flexWrap: "wrap",
         flexDirection: "row",
@@ -249,6 +291,7 @@ export const style = StyleSheet.create({
         marginTop: 10,
         marginBottom: 30
     },
+
     FieldData: {
         height: 40,
         width: 80,
@@ -309,6 +352,17 @@ export const style = StyleSheet.create({
         borderRadius: 3,
         alignItems: "center",
         marginTop: 20
+    },
+
+    buttonUp: {
+        width: 150,
+        paddingTop: 5,
+        paddingBottom: 5,
+        backgroundColor: "#7B68EE",
+        borderRadius: 3,
+        alignItems: "center",
+        // marginTop: 20,
+        marginBottom: 25
     },
 
     styleHour: {

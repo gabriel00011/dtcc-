@@ -9,7 +9,8 @@ export const style = StyleSheet.create({
         // borderWidth: 1,
         // borderColor: "yellow",
         flexDirection: "column",
-        justifyContent: "space-evenly"
+        justifyContent: "space-evenly",
+        backgroundColor:"#FFFFFF"
     },
 
     // Session de Gênero
@@ -20,7 +21,8 @@ export const style = StyleSheet.create({
         // borderColor: "green",
         flexDirection: "row",
         justifyContent: "space-around",
-        marginTop: -10
+        marginTop: -10,
+        backgroundColor:"#FFFFFF"
     },
 
     // Session de campo de inputs

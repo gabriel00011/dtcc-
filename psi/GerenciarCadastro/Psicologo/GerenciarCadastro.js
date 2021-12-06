@@ -15,10 +15,17 @@ import { style } from "../../css/CssGerenciarCadastroPsi/TelaGerenciarCadastroPs
 
 export default ({ route, navigation }) => {
 
-    const { idPsi } = route.params
 
-    const id_psiS = JSON.stringify(idPsi)
-    const id_psiP = JSON.parse(id_psiS)
+    try {
+
+        const { idPsi } = route.params
+
+        const id_psiS = JSON.stringify(idPsi)
+        var id_psiP = JSON.parse(id_psiS)
+        
+    } catch (e) {
+
+    }
 
     const [nameValue, setNameInput] = useState("")
     const [middlenameValue, setMiddlenameInput] = useState("")

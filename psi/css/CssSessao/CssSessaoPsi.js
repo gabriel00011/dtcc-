@@ -7,13 +7,15 @@ export const style = StyleSheet.create({
     Main: {
         flex: 1,
         width: "100%",
-        alignItems: "center"
+        alignItems: "center",
+        backgroundColor:"#FFFFFF"
     },
 
     // Centralziar View
     SessionCenter: {
         flex: 1,
         width: "90%",
+        backgroundColor:"#FFFFFF"
     },
 
     // Session botões de Perfil e Conta

@@ -9,7 +9,8 @@ export const style = StyleSheet.create({
         // borderColor: "green",
         // borderWidth: 1,
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        backgroundColor:"#FFFFFF"
     },
 
     SessionCenter: {
@@ -17,6 +18,7 @@ export const style = StyleSheet.create({
         width: "80%",
         // borderColor: "black",
         // borderWidth: 1
+        backgroundColor:"#FFFFFF"
     },
 
     SessionIcons: {

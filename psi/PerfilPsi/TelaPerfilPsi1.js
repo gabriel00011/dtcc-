@@ -1,102 +1,99 @@
 import React, { useState, useEffect, useMemo } from "react"
 
 import axios from "axios"
-import { View, SafeAreaView, TouchableHighlight, ScrollView, Picker, Button, TextInput, FlatList } from "react-native"
+import { View, SafeAreaView, TouchableHighlight, ScrollView, Picker, Button, TextInput, FlatList, Linking } from "react-native"
 import { Text } from "react-native-elements"
 import IconAntDesign from "react-native-vector-icons/AntDesign"
 import IconMaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons"
 import DateTimePicker from '@react-native-community/datetimepicker'
 import DatePicker from 'react-native-datepicker'
+import IconFeather from "react-native-vector-icons/Feather"
 
 // importação arquivos externos
 import { style } from "../css/CssPerfilPsi/CssTelaPerfilPsi"
 import { getDados, session, SessionDadosPsi } from "../functions/getSessionPsi"
-
-import { InsertHours, updateHours, DeleteHours } from "../functions/HoursUpDelIn"
+import { DadosLogin } from "../functions/login"
+import { InsertHours, updateHours, DeleteHours, addPublic, delteSession } from "../functions/HoursUpDelIn"
 
 export default ({ navigation }) => {
 
     const [listDadosPsi, setListDados] = useState([])
-    const [setDados, setDadosPsi] = useState([])
     const [segData, setDataSeg] = useState([])
     const [terData, setDataTer] = useState([])
     const [quaData, setDataQua] = useState([])
     const [quiData, setDataQui] = useState([])
     const [sexData, setDataSex] = useState([])
+    const [agenda, setAgenda] = useState([])
+    const [selectedValuePubli, setSelectedValuePubli] = useState("")
+    const [selectedValueEsp, setSelectedValueEsp] = useState("")
+
+    console.log(listDadosPsi)
+
 
 
     useEffect(() => {
+
+        try {
+            axios.get("http://192.168.15.223/getDadosPsicologo/" + DadosLogin.email)
+                .then(DadosPsicologo => DadosPsicologo.data)
+                .then(renderDados => {
+                    setListDados(renderDados.resultado)
+                    setDataSeg(renderDados.resultSeg)
+                    setDataTer(renderDados.resultTer)
+                    setDataQua(renderDados.resultQua)
+                    setDataQui(renderDados.resultQui)
+                    setDataSex(renderDados.resultSex)
+                    setAgenda(renderDados.resultAgends)
+                })
+        } catch (err) {
+            console.log(err)
+        }
+    }, [])
+
+    try {
+        var Id_psicologo = listDadosPsi[0]?.psi_in_codigo
+    } catch (e) {
+
+    }
+
+    try {
+
+        var pa_st_telefone = agenda[0]?.pa_st_celular
+        var id_session = agenda[0].age_in_codigo
+        var age_dia_agendado = agenda[0].age_dia_agendado
+        var age_hora_agendado = agenda[0].age_hora_agendado
+        var pa_st_nome = agenda[0].pa_st_nome
+        var pa_st_sobrenome = agenda[0].pa_st_sobrenome
+
+    } catch (e) {
+        console.log(e)
+    }
+
+    let idpsi = listDadosPsi.map((value) => {
+        return console.log(value.psi_in_codigo)
+    })
+
+    console.log("id do psicologo", idpsi)
+
+    async function ReloadBanco() {
 
         try {
 
             axios.get("http://192.168.15.223/getDadosPsicologo/" + SessionDadosPsi.email)
                 .then(DadosPsicologo => DadosPsicologo.data)
                 .then(renderDados => {
-                    setListDados(renderDados)
+                    setListDados(renderDados.resultado)
                     setDataSeg(renderDados.resultSeg)
                     setDataTer(renderDados.resultTer)
                     setDataQua(renderDados.resultQua)
                     setDataQui(renderDados.resultQui)
                     setDataSex(renderDados.resultSex)
                 })
-
-        } catch (e) {
-
-            console.log(e)
+        } catch (err) {
+            console.log(err)
         }
 
-    }, [])
-
-
-    const listItemIfy = JSON.stringify(listDadosPsi)
-    const listItemParse = JSON.parse(listItemIfy)
-
-    try {
-
-        var nome = listItemParse.resultado[0].psi_st_nome
-        var sobrenome = listItemParse.resultado[0].psi_st_sobrenome
-        var crp = listItemParse.resultado[0].psi_st_crp
-        var Id_psicologo = listItemParse.resultado[0].psi_in_codigo
-        var email = listItemParse.resultado[0].psi_st_email
-
-    } catch (e) {
-        console.log(e)
     }
-
-    async function ReloadBanco(email) {
-
-        try {
-
-            axios.get("http://192.168.15.223/getDadosPsicologo/" + email)
-                .then(DadosPsicologo => DadosPsicologo.data)
-                .then(renderDados => {
-                    setDataSeg(renderDados.resultSeg)
-                    setDataTer(renderDados.resultTer)
-                    setDataQua(renderDados.resultQua)
-                    setDataQui(renderDados.resultQui)
-                    setDataSex(renderDados.resultSex)
-
-                    setTimeout(() => {
-                        setDataSeg(renderDados.resultSeg)
-                        setDataTer(renderDados.resultTer)
-                        setDataQua(renderDados.resultQua)
-                        setDataQui(renderDados.resultQui)
-                        setDataSex(renderDados.resultSex)
-                    }, 1000)
-
-
-
-                })
-
-        } catch (e) {
-            console.log(e)
-
-        }
-
-
-
-    }
-
 
     const [dateValue, setDateValue] = useState("")
     const [selectedValue, setSelectedValue] = useState("seg")
@@ -178,24 +175,33 @@ export default ({ navigation }) => {
 
         <SafeAreaView style={style["Main"]}>
 
-
+            {/* Centralizar View */}
             <ScrollView style={style["SessionCenter"]} vertical={true} >
-                {/* Centralizar View */}
-
 
                 <View style={style["SessionButtonAgenda"]}>
 
-                    <TouchableHighlight underlayColor="none" onPress={() => navigation.navigate("TelaAgendaPsi", { idPsi: Id_psicologo })}>
-                        <View style={style["ButtonAgenda"]} >
-                            <IconAntDesign name="book" size={25} color="#7B68EE" />
-                            <Text style={{ color: "#7B68EE" }}>Agenda</Text>
-                        </View>
-                    </TouchableHighlight>
+                    <View style={style["SessionButtonAgendaB"]}>
 
-                    <TouchableHighlight underlayColor="none" onPress={() => navigation.navigate("GerenciarCadastroPsi", { idPsi: Id_psicologo })}>
-                        <View style={style["ButtonConta"]}>
-                            <IconMaterialCommunityIcons name="account-circle" size={25} color="#7B68EE" />
-                            <Text style={{ color: "#7B68EE" }}>Conta</Text>
+                        <TouchableHighlight underlayColor="none" onPress={() => navigation.navigate("TelaAgendaPsi", { idPsi: Id_psicologo })}>
+                            <View style={style["ButtonAgenda"]} >
+                                <IconAntDesign name="book" size={25} color="#7B68EE" />
+                                <Text style={{ color: "#7B68EE" }}>Agenda</Text>
+                            </View>
+                        </TouchableHighlight>
+
+                        <TouchableHighlight underlayColor="none" onPress={() => navigation.navigate("GerenciarCadastroPsi", { idPsi: Id_psicologo })}>
+                            <View style={style["ButtonConta"]}>
+                                <IconMaterialCommunityIcons name="account-circle" size={25} color="#7B68EE" />
+                                <Text style={{ color: "#7B68EE" }}>Conta</Text>
+                            </View>
+                        </TouchableHighlight>
+
+                    </View>
+
+
+                    <TouchableHighlight underlayColor="none" onPress={() => { navigation.replace("Login") }}>
+                        <View style={{ marginLeft: 15 }}>
+                            <Text><IconFeather name="log-out" size={30} color="#696969" /></Text>
                         </View>
                     </TouchableHighlight>
 
@@ -204,13 +210,21 @@ export default ({ navigation }) => {
                 {/* View de Nome e CRP */}
                 <View style={style["SessionDados"]}>
 
+
                     <View style={style["Photo"]}>
-                        <Text>Foto</Text>
+                        {listDadosPsi.map((value) => (
+                            <Text style={{ fontWeight: "bold", fontSize: 25, color: "white" }}> {value.psi_st_nome.charAt().toUpperCase()} </Text>
+                        ))}
                     </View>
 
                     <View style={style["NomeCrp"]}>
-                        <Text style={{ fontWeight: "bold" }}>{nome} {sobrenome}</Text>
-                        <Text style={{ color: "gray" }}>{crp} </Text>
+                        {listDadosPsi.map((value) => (
+                            <>
+                                <Text style={{ fontWeight: "bold", color: "black" }}> {value.psi_st_nome} {value.psi_st_sobrenome} </Text>
+                                <Text style={{ color: "gray" }}>{value.psi_st_crp} </Text>
+                            </>
+                        ))}
+
                     </View>
 
 
@@ -221,9 +235,9 @@ export default ({ navigation }) => {
 
                     <View style={style["DadosHoraConsulta"]}>
                         <ScrollView horizontal={true}>
-                            <Text>Proxima consulta ás 00: 00</Text>
+                            <Text>Proxima consulta ás {age_dia_agendado}</Text>
                         </ScrollView>
-                        <Text>Nome do Paciente</Text>
+                        <Text>{pa_st_nome} {pa_st_sobrenome}</Text>
                     </View>
 
                     <View style={style["SessionButtonConsulta"]}>
@@ -232,11 +246,26 @@ export default ({ navigation }) => {
                             <Text style={{ fontWeight: "bold", color: "gray" }}>Online</Text>
                         </View>
 
-                        <TouchableHighlight>
+                        <TouchableHighlight underlayColor="none" onPress={() => {
+                            try {
+
+                                Linking.canOpenURL("whatsapp://send?text=oi").then(supported => {
+
+                                    return Linking.openURL(
+                                        `whatsapp://send?phone=${pa_st_telefone}&text=Oi`
+                                    );
+
+                                })
+                            } catch (e) {
+                                console.log(e)
+                            }
+
+                        }}>
                             <View style={style["ButtonConsulta"]}>
                                 <Text style={{ color: "white", fontWeight: "bold" }}>Ir para sessão</Text>
                             </View>
                         </TouchableHighlight>
+
                     </View>
 
                 </View>
@@ -244,27 +273,56 @@ export default ({ navigation }) => {
                 {/* View de grupo e especilidade */}
                 <View style={style["SessionGroup"]}>
 
-                    <Text style={{ fontWeight: "bold", color: "gray" }}>Público</Text>
+                    <View style={style["SessionGroup0"]}>
 
-                    <View style={style["OderButtonsGroup"]}>
-                        <TouchableHighlight>
-                            <View style={style["ButtonGroup1"]}>
-                                <Text style={{ color: "white" }}>Grupo 1</Text>
-                            </View>
-                        </TouchableHighlight>
-
-                        <TouchableHighlight>
-                            <View style={style["ButtonGroup2"]}>
-                                <Text style={{ color: "white" }}>Grupo 2</Text>
-                            </View>
-                        </TouchableHighlight>
-
-                    </View>
-                    <TouchableHighlight>
-                        <View style={style["ButtonGroupEspecilidade1"]}>
-                            <Text style={{ color: "gray" }}>Especialidade 1</Text>
+                        <View>
+                            <Text style={{ fontWeight: "bold" }}>  Público</Text>
+                            <Picker
+                                selectedValue={selectedValuePubli}
+                                style={{ height: 50, width: 170 }}
+                                onValueChange={(itemValue, itemIndex) => setSelectedValuePubli(itemValue)}
+                            >
+                                <Picker.Item label="Não selecionado" />
+                                <Picker.Item label="Idoso" value="A" />
+                                <Picker.Item label="Casais" value="B" />
+                                <Picker.Item label="LGBTQIA+" value="C" />
+                                <Picker.Item label="PcD" value="D" />
+                                <Picker.Item label="Infantil" value="E" />
+                            </Picker>
                         </View>
-                    </TouchableHighlight>
+
+                        <View style={style["centerSelect"]}>
+
+                            <Text style={{ fontWeight: "bold" }}>  Especialidade</Text>
+
+                            <Picker
+                                selectedValue={selectedValueEsp}
+                                style={{ height: 50, width: 170 }}
+                                onValueChange={(itemValue, itemIndex) => setSelectedValueEsp(itemValue)}
+                            >
+                                <Picker.Item label="Não selecionado" />
+                                <Picker.Item label="Ansiedade" value="F" />
+                                <Picker.Item label="TOC" value="G" />
+                                <Picker.Item label="Burnout" value="H" />
+                                <Picker.Item label="TAG" value="I" />
+                                <Picker.Item label="Casamento" value="J" />
+                                <Picker.Item label="Alcoolismo" value="K" />
+
+                            </Picker>
+
+                        </View>
+                    </View>
+
+                    <View style={{ width: "100%", alignItems: "center", marginBottom: 40 }}>
+                        <TouchableHighlight underlayColor="none" onPress={() => {
+                            addPublic(selectedValuePubli, selectedValueEsp, Id_psicologo)
+                        }}>
+                            <View style={style["SameButton"]}>
+                                <Text style={{ color: "white" }}>Adicionar</Text>
+                            </View>
+                        </TouchableHighlight>
+                    </View>
+
                 </View>
 
                 {/* Tabela de horário de consulta*/}
@@ -385,6 +443,18 @@ export default ({ navigation }) => {
 
                     </View>
 
+                    <View style={style["buttonUpdate"]}>
+
+                        <TouchableHighlight underlayColor="none" onPress={() => {
+                            ReloadBanco()
+                        }}>
+                            <View style={style["buttonUp"]}>
+                                <Text style={{ color: "white" }}>Atualizar tabela</Text>
+                            </View>
+                        </TouchableHighlight>
+
+                    </View>
+
                     {/* INSERIR HORARIO  */}
                     <View style={style["OrderButtons"]}>
                         <Picker
@@ -417,7 +487,7 @@ export default ({ navigation }) => {
                         <View style={style["orderUpAndDelte"]}>
 
                             <TouchableHighlight underlayColor="none" onPress={() => {
-                                ReloadBanco(email)
+                                // ReloadBanco(email)
                                 InsertHours(Id_psicologo, selectedValue, hours)
                             }}>
                                 <View style={style["buttonUpAndDel"]}>
@@ -426,11 +496,11 @@ export default ({ navigation }) => {
                             </TouchableHighlight>
 
                             <TouchableHighlight underlayColor="none" onPress={() => {
-                                ReloadBanco(email)
+                                // ReloadBanco(email)
                                 DeleteHours(Id_psicologo, selectedValue, hours)
                             }}>
                                 <View style={style["buttonUpAndDel"]}>
-                                    <Text style={{ color: "white" }}>deletar</Text>
+                                    <Text style={{ color: "white" }}>Deletar</Text>
                                 </View>
                             </TouchableHighlight>
 
@@ -462,7 +532,7 @@ export default ({ navigation }) => {
 
                                 <TouchableHighlight underlayColor="none" onPress={() => showTimepicker1("time")}>
                                     <View style={style["buttonHour"]}>
-                                        <Text style={{ color: "white" }}>atual</Text>
+                                        <Text style={{ color: "white" }}>Atual</Text>
                                     </View>
                                 </TouchableHighlight>
 
@@ -483,10 +553,10 @@ export default ({ navigation }) => {
                                 <View style={{ width: "100%", alignItems: "center", marginBottom: 40 }}>
                                     <TouchableHighlight underlayColor="none" onPress={() => {
                                         updateHours(hours1, hours2, Id_psicologo, selectUpdate)
-                                        ReloadBanco(email)
+                                        // ReloadBanco(email)
                                     }}>
                                         <View style={style["SameButton"]}>
-                                            <Text style={{ color: "white" }}>Atualizar {console.log(hours1, hours2, Id_psicologo, selectUpdate)}</Text>
+                                            <Text style={{ color: "white" }}>Atualizar</Text>
                                         </View>
                                     </TouchableHighlight>
                                 </View>

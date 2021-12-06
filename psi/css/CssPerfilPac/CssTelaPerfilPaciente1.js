@@ -9,7 +9,8 @@ export const style = StyleSheet.create({
         // borderWidth: 1,
         // borderColor: "green",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        backgroundColor:"#FFFFFF"
     },
 
     // Centralizar View
@@ -20,7 +21,8 @@ export const style = StyleSheet.create({
         // borderWidth: 1,
         justifyContent: "center",
         alignItems: "center",
-        marginTop: 50
+        marginTop: 50,
+        backgroundColor:"#FFFFFF"
     },
 
     SessionIcon: {

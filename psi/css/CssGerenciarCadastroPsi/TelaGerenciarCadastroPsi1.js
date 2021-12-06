@@ -10,7 +10,8 @@ export const style = StyleSheet.create({
         // borderColor: "black",
         flexDirection: "column",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        backgroundColor:"#FFFFFF"
     },
 
     // View centralizador ao elemento pai
@@ -21,6 +22,7 @@ export const style = StyleSheet.create({
         // borderColor: "green",
         flexDirection: "column",
         justifyContent: "center",
+        backgroundColor:"#FFFFFF"
     },
 
     // Session perfil e agenda

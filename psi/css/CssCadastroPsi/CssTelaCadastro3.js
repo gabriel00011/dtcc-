@@ -8,7 +8,8 @@ export const style = StyleSheet.create({
         // borderColor: "pink",
         // borderWidth: 2,
         flexDirection: "column",
-        justifyContent: "space-evenly"
+        justifyContent: "space-evenly",
+        backgroundColor:"#FFFFFF"
     },
 
     // Session de campo de inputs

@@ -15,9 +15,14 @@ const { deleteHours } = require("./psicologo/deleteHours")
 const { updateHours } = require("./psicologo/updateHours")
 const { agendaPsi } = require("./psicologo/agendapsi")
 const { showAgendaPsi } = require("./psicologo/showAgendsPsi")
+const { InsertPublicEspecial } = require("./psicologo/public&Especi")
+const { deleteSession } = require("./psicologo/deleteSession")
+
+
 const { paciente } = require("./paciente/cadastrodados")
 const { updatePaciente } = require("./paciente/update")
 const { getDadosPaciente } = require("./paciente/getDadosPaciente")
+const { consultasAgends } = require("./paciente/consultasAgends")
 
 // // pipeline
 app.use(bodyparser.urlencoded({ extended: true }))
@@ -45,12 +50,18 @@ app.post("/agendaPsi", agendaPsi)
 
 app.post("/showAgenda", showAgendaPsi)
 
+app.post("/signAtuacao", InsertPublicEspecial)
+
+app.post("/deleteSession", deleteSession)
+
 // // Crud de Paciente
 app.post("/dadospaciente", paciente)
 
 app.put("/updatePaciente", updatePaciente)
 
-app.get("/dadosPaciente/:params", getDadosPaciente)
+app.get("/dadosPaciente/:email", getDadosPaciente)
+
+app.post("/consultasAgends", consultasAgends)
 
 // // pesquisa psicologo
 app.post("/searchPsicologo", searchPsicologo)

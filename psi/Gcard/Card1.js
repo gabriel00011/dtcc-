@@ -6,6 +6,7 @@ import { RadioButton } from "react-native-paper"
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize"
 import IconMaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons"
 import IconAntDesign from "react-native-vector-icons/AntDesign"
+import IconFeather from "react-native-vector-icons/Feather"
 import axios from "axios"
 
 // importação de arquivo para estilização
@@ -36,19 +37,23 @@ export default ({ navigation }) => {
     const [alcoolismo, setalcoolismo] = useState(false)
 
     useEffect(() => {
-        axios.get("http://192.168.15.223/dadosPaciente/" + DadosLogin.email)
-            .then(resp => resp.data)
-            .then(resp => {
-                setDadosPaciente(resp)
-                console.log(resp)
-            })
+        try {
+            axios.get("http://192.168.15.223/dadosPaciente/" + DadosLogin.email)
+                .then(resp => resp.data)
+                .then(resp => {
+                    setDadosPaciente(resp)
+                })
+        } catch (err) {
+            console.log(err)
+        }
+
     }, [])
 
 
     console.log(dadosPaciente)
 
     try {
-        var id_paciente = dadosPaciente[0]?.pa_in_codigo
+        var id_paciente = dadosPaciente[0].pa_in_codigo
     } catch (e) {
 
     }
@@ -66,7 +71,7 @@ export default ({ navigation }) => {
     let pcdValues = ""
 
     if (infantil == true) {
-        infantilValue = "infantil"
+        infantilValue = "E"
     }
 
     if (idoso == true) {
@@ -77,13 +82,12 @@ export default ({ navigation }) => {
         casaisValue = "B"
     }
 
-
     if (lgbtq == true) {
-        lgbtqValues = "lgbtq"
+        lgbtqValues = "C"
     }
 
     if (pcd == true) {
-        pcdValues = "pcd"
+        pcdValues = "D"
     }
 
     // Especialistas checbox
@@ -96,70 +100,51 @@ export default ({ navigation }) => {
 
 
     if (ansiedade == true) {
-        ansiedadeValue = "C"
+        ansiedadeValue = "F"
     }
 
     if (toc == true) {
-        tocValues = "D"
+        tocValues = "G"
     }
 
     if (burnout == true) {
-        burnoutValues = "burnout"
+        burnoutValues = "H"
     }
 
     if (tag == true) {
-        tagValues = "tag"
+        tagValues = "I"
     }
 
     if (casamento == true) {
-        casamentoValues = "casamento"
+        casamentoValues = "J"
     }
 
     if (alcoolismo == true) {
-        alcoolismoValues = "alcoolismo"
+        alcoolismoValues = "k"
     }
 
 
     // valor do RadioButton 
-    let kms = ""
-
-    if (checked == "2km") {
-        kms = "2"
-    }
-
-    if (checked == "10km") {
-        kms = "10"
-    }
-
-    if (checked == "25km") {
-        kms = "25"
-    }
 
     if (todos == true) {
         todosValues = "todos"
-        infantilValue = "infantil"
+        infantilValue = "E"
         IdosoValue = "A"
         casaisValue = "B"
-        lgbtqValues = "lgbtq"
-        pcdValues = "pcd"
-        ansiedadeValue = "C"
-        tocValues = "D"
-        burnoutValues = "burnout"
-        tagValues = "tag"
-        casamentoValues = "casamento"
-        alcoolismoValues = "alcoolismo"
+        lgbtqValues = "C"
+        pcdValues = "D"
+        ansiedadeValue = "F"
+        tocValues = "G"
+        burnoutValues = "H"
+        tagValues = "I"
+        casamentoValues = "J"
+        alcoolismoValues = "K"
     }
-    console.warn(kms)
-    // console.warn(kms)
-    // console.warn(colorOnline)
-    console.warn(ansiedadeValue + " " + tocValues + " " + burnoutValues + " " + tagValues + " " + casamentoValues + " " + alcoolismoValues + " " + IdosoValue + " " + casaisValue + " " + infantilValue + " " + todosValues + " " + pcdValues + " " + lgbtqValues)
-    // console.warn(IdosoValue + " " + casaisValue + " " + infantilValue + " " + todosValues + " " + pcdValues + " " + lgbtqValues)
-
-    FuncDadosCard(kms, infantilValue, IdosoValue, casaisValue, todosValues, lgbtqValues, pcdValues, ansiedadeValue, tocValues, burnoutValues, tagValues, casamentoValues, alcoolismoValues)
 
 
+    FuncDadosCard(infantilValue, IdosoValue, casaisValue, todosValues, lgbtqValues, pcdValues, ansiedadeValue, tocValues, burnoutValues, tagValues, casamentoValues, alcoolismoValues)
 
-
+    // console.log(infantilValue, IdosoValue, casaisValue, todosValues, lgbtqValues, pcdValues, ansiedadeValue, tocValues, burnoutValues, tagValues, casamentoValues, alcoolismoValues)
     return (
         <SafeAreaView style={style["Main"]}>
 
@@ -167,19 +152,29 @@ export default ({ navigation }) => {
 
                 <View style={style["SeesionIcon"]}>
 
-                    <TouchableHighlight underlayColor="none" onPress={() => navigation.navigate("GerenciarCadastroPac")}>
-                        <View style={style["ButtonConta"]}>
-                            <IconMaterialCommunityIcons name="account-circle" size={25} color="#7B68EE" />
-                            <Text style={{ color: "#7B68EE" }}>Conta</Text>
-                        </View>
-                    </TouchableHighlight>
+                    <View style={style["SessionIconView"]}>
 
-                    <TouchableHighlight underlayColor="none" onPress={() => navigation.navigate("GerenciarCadastroPac")}>
-                        <View style={style["ButtonConta"]}>
-                            <IconAntDesign name="profile" size={25} color="#7B68EE" />
-                            <Text style={{ color: "#7B68EE" }}>Consultas</Text>
-                        </View>
-                    </TouchableHighlight>
+                        <TouchableHighlight underlayColor="none" onPress={() => navigation.navigate("GerenciarCadastroPac")}>
+                            <View style={style["ButtonConta"]}>
+                                <IconMaterialCommunityIcons name="account-circle" size={25} color="#7B68EE" />
+                                <Text style={{ color: "#7B68EE" }}>Conta</Text>
+                            </View>
+                        </TouchableHighlight>
+
+                        <TouchableHighlight underlayColor="none" onPress={() => navigation.navigate("sessionPac", { idpac: id_paciente })}>
+                            <View style={style["ButtonConta"]}>
+                                <IconAntDesign name="profile" size={25} color="#7B68EE" />
+                                <Text style={{ color: "#7B68EE" }}>Consultas</Text>
+                            </View>
+                        </TouchableHighlight>
+
+                        <TouchableHighlight underlayColor="none" onPress={() => { navigation.replace("Login") }}>
+                            <View style={{ marginLeft: 90 }}>
+                                <Text><IconFeather name="log-out" size={30} color="#696969" /></Text>
+                            </View>
+                        </TouchableHighlight>
+
+                    </View>
 
                     <View >
 
@@ -196,7 +191,6 @@ export default ({ navigation }) => {
                     </View>
 
                 </View>
-
 
                 {/* View de Botoões */}
                 <View style={style["SessionModalidade"]}>

@@ -13,12 +13,18 @@ import { DadosCard } from "../functions/Card1"
 
 export default ({ route, navigation }) => {
 
-    const { idPsi } = route.params
-
-    const id_psiS = JSON.stringify(idPsi)
-    const id_psiP = JSON.parse(id_psiS)
-
     const [dados, setDados] = useState([])
+    try {
+
+        const { idPsi } = route.params
+
+        const id_psiS = JSON.stringify(idPsi)
+        var id_psiP = JSON.parse(id_psiS)
+        
+    } catch (e) {
+        console.log(e)
+    }
+
 
     console.log(dados)
 
@@ -70,7 +76,7 @@ export default ({ route, navigation }) => {
                         <View style={style["DadosPsi"]}>
 
                             <View style={style["Dados"]}>
-                                <Text style={{ fontWeight: "bold" }}>{value.pa_st_nome}</Text>
+                                <Text style={{ fontWeight: "bold" }}>{value.pa_st_nome} {value.pa_st_sobrenome}</Text>
                                 <Text style={{ color: "gray" }}>Dia: {value.age_hora_agendado} ás {value.age_dia_agendado}</Text>
                                 <Text style={{ color: "gray" }}>Celular: {value.pa_st_celular}</Text>
                             </View>

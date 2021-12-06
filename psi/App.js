@@ -17,7 +17,7 @@ import Map from "./Mapa/mapa1"
 import Card from "./Gcard/Card1"
 import Card2 from "./Gcard/Card2"
 import SessaoPsi from './Sessao/SessaoPsi';
-
+import SessaoPac from "./Sessao/sessaoPac"
 
 
 export default function App() {
@@ -37,10 +37,11 @@ export default function App() {
           <Stack.Screen name="TelaPerfil1" component={TelaPerfilPaci} />
           <Stack.Screen name="Card" component={Card} />
           <Stack.Screen name="Card2" component={Card2} />
+          <Stack.Screen name="sessionPac" component={SessaoPac} />
           <Stack.Screen name="sessionPSi" component={SessaoPsi} />
 
-          <Stack.Screen name="TelaAgendaPsi" component={TelaAgendaPsi} />
           <Stack.Screen name="TelaPerfilPsi" component={TelaPerfilPsi} />
+          <Stack.Screen name="TelaAgendaPsi" component={TelaAgendaPsi} />
           <Stack.Screen name="GerenciarCadastroPsi" component={GerenciarCadastroPsi} />
 
         </Stack.Navigator>

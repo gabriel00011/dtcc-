@@ -10,7 +10,8 @@ export const style = StyleSheet.create({
         // borderColor: "green",
         justifyContent: "center",
         alignItems: "center",
-        flexDirection: "column"
+        flexDirection: "column",
+        backgroundColor:"#FFFFFF"
     },
 
     // Alinhamento para elemento pai
@@ -20,7 +21,8 @@ export const style = StyleSheet.create({
         // borderColor: "blue",
         // borderWidth: 1,
         flexDirection: "column",
-        justifyContent: "space-between"
+        justifyContent: "space-between",
+        backgroundColor:"#FFFFFF"
     },
 
     // Session de Botões de navegação - Filho

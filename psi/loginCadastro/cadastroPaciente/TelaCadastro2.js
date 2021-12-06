@@ -100,10 +100,10 @@ export default ({ navigation }) => {
                 />
 
                 <TextInput style={style["Inputs"]}
-                    onChangeText={(tel) => setTelefoneInput(tel)} placeholder="Telefone" />
+                    onChangeText={(tel) => setTelefoneInput(tel)} placeholder=" Telefone" />
 
                 <TextInput style={style["Inputs"]}
-                    onChangeText={(cel) => setCelInput(cel)} placeholder="Celular" />
+                    onChangeText={(cel) => setCelInput(cel)} placeholder=" Ex cel: 5511xxxxxxxx" />
 
             </View>
             {/*style Botões de navegação de telas */}

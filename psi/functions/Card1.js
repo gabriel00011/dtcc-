@@ -3,9 +3,7 @@ import axios from "axios"
 
 export const DadosCard = {}
 
-export const FuncDadosCard = (kms, infantil, idoso, casais, todos, lgbtq, pcd, ansiedade, toc, burnout, tag, casamento, alcoolismo) => {
-
-    DadosCard.kms = kms
+export const FuncDadosCard = (infantil, idoso, casais, todos, lgbtq, pcd, ansiedade, toc, burnout, tag, casamento, alcoolismo) => {
 
     DadosCard.infantil = infantil
     DadosCard.idoso = idoso
@@ -20,15 +18,15 @@ export const FuncDadosCard = (kms, infantil, idoso, casais, todos, lgbtq, pcd, a
     DadosCard.tag = tag
     DadosCard.casamento = casamento
     DadosCard.alcoolismo = alcoolismo
-
+    
 }
+
 
 export function sendSearch() {
 
 
-    axios.get(`http://192.168.15.223/searchPsicologo`, {
+    axios.post(`http://192.168.15.223/searchPsicologo`, {
 
-        kms: DadosCard.kms,
         infantil: DadosCard.infantil,
         idoso: DadosCard.idoso,
         casais: DadosCard.casais,
@@ -47,5 +45,3 @@ export function sendSearch() {
 
 
 }
-
-console.warn(Object.keys(DadosCard))

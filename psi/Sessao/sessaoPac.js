@@ -13,10 +13,8 @@ import { DadosCard } from "../functions/Card1"
 
 export default ({ route, navigation }) => {
 
-    const [dados, setDados] = useState([])
-
     try {
-
+        
         const { idpac } = route.params
 
         const id_pacS = JSON.stringify(idpac)
@@ -26,41 +24,25 @@ export default ({ route, navigation }) => {
 
     }
 
+    const [dados, setDados] = useState([])
 
-    // console.log(dados)
+    console.log(id_pacP)
 
     try {
 
         useEffect(() => {
-            axios.post(`http://192.168.15.223/searchPsicologo`, {
-
-                infantil: DadosCard.infantil,
-                idoso: DadosCard.idoso,
-                casais: DadosCard.casais,
-                todos: DadosCard.todos,
-                lgbtq: DadosCard.lgbtq,
-                pcd: DadosCard.pcd,
-
-                ansiedade: DadosCard.ansiedade,
-                toc: DadosCard.toc,
-                burnout: DadosCard.burnout,
-                tag: DadosCard.tag,
-                casamento: DadosCard.casamento,
-                alcoolismo: DadosCard.alcoolismo
-
+            axios.post(`http://192.168.15.223/consultasAgends`, {
+                idPac: id_pacP
             })
                 .then(resp => resp.data)
                 .then(res => {
                     setDados(res)
                 })
-
         }, [])
 
     } catch (e) {
-            console.log(e)
-    }
 
-    console.log(DadosCard.ansiedade, DadosCard.idoso)
+    }
 
     return (
         <SafeAreaView style={style["Main"]}>
@@ -84,13 +66,13 @@ export default ({ route, navigation }) => {
 
                     {dados.map((value) => (
                         <View style={style["DadosPsi"]}>
-                            <TouchableHighlight underlayColor="none" onPress={() => { navigation.navigate("Card2", { email: value.psi_st_email, idpac: id_pacP }) }}>
-                                <View style={style["Dados"]}>
-                                    <Text style={{ fontWeight: "bold" }}>{value.psi_st_nome}</Text>
-                                    <Text style={{ color: "gray" }}>{value.psi_st_crp}</Text>
-                                    <Text style={{ color: "gray" }}>{value.end_st_rua}, {value.end_st_numero}, {value.end_st_cidade}, {value.end_st_cep}, {value.end_st_uf}</Text>
-                                </View>
-                            </TouchableHighlight>
+
+                            <View style={style["Dados"]}>
+                                <Text style={{ fontWeight: "bold" }}>{value.psi_st_nome}</Text>
+                                <Text style={{ color: "gray" }}>{value.psi_st_crp}</Text>
+                                <Text style={{ color: "gray" }}>Dia:{value.age_hora_agendado} ás {value.age_dia_agendado}</Text>
+                            </View>
+
                         </View>
                     ))}
 
