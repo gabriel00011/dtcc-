@@ -25,18 +25,18 @@ import { estilo } from "../css/login"
 
 export default ({ navigation }) => {
 
+    const [emailValue, setEmailInput] = useState("")
+    const [passwordValue, setPasswordInput] = useState("")
+    const [checked, setChecked] = useState("paciente")
+
     function MainScreenPsicologo() {
-        navigation.replace("TelaPerfilPsi")
+        navigation.replace("TelaPerfilPsi", { email: emailValue })
     }
 
     function MainScreenPaciente() {
         navigation.replace("Card")
     }
 
-
-    const [emailValue, setEmailInput] = useState("")
-    const [passwordValue, setPasswordInput] = useState("")
-    const [checked, setChecked] = useState("paciente")
 
 
     function login() {

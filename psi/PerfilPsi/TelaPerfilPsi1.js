@@ -15,7 +15,13 @@ import { getDados, session, SessionDadosPsi } from "../functions/getSessionPsi"
 import { DadosLogin } from "../functions/login"
 import { InsertHours, updateHours, DeleteHours, addPublic, delteSession } from "../functions/HoursUpDelIn"
 
-export default ({ navigation }) => {
+export default ({ route, navigation }) => {
+
+    try {
+        const { email } = route.params
+    } catch (e) {
+
+    }
 
     const [listDadosPsi, setListDados] = useState([])
     const [segData, setDataSeg] = useState([])
@@ -29,12 +35,10 @@ export default ({ navigation }) => {
 
     console.log(listDadosPsi)
 
-
-
     useEffect(() => {
 
         try {
-            axios.get("http://192.168.15.223/getDadosPsicologo/" + DadosLogin.email)
+            axios.get("http://192.168.15.223/getDadosPsicologo/" + email)
                 .then(DadosPsicologo => DadosPsicologo.data)
                 .then(renderDados => {
                     setListDados(renderDados.resultado)
@@ -44,7 +48,10 @@ export default ({ navigation }) => {
                     setDataQui(renderDados.resultQui)
                     setDataSex(renderDados.resultSex)
                     setAgenda(renderDados.resultAgends)
+                }).catch((e) => {
+                    console.log(e)
                 })
+
         } catch (err) {
             console.log(err)
         }
@@ -69,17 +76,13 @@ export default ({ navigation }) => {
         console.log(e)
     }
 
-    let idpsi = listDadosPsi.map((value) => {
-        return console.log(value.psi_in_codigo)
-    })
-
-    console.log("id do psicologo", idpsi)
+    console.log("id do psicologo", Id_psicologo)
 
     async function ReloadBanco() {
 
         try {
 
-            axios.get("http://192.168.15.223/getDadosPsicologo/" + SessionDadosPsi.email)
+            axios.get("http://192.168.15.223/getDadosPsicologo/" + email)
                 .then(DadosPsicologo => DadosPsicologo.data)
                 .then(renderDados => {
                     setListDados(renderDados.resultado)

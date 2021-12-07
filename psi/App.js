@@ -28,7 +28,7 @@ export default function App() {
       <NavigationContainer>
 
         <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
-
+{/* 
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="cadastroPsi" component={CadastroPsi} />
 
@@ -38,7 +38,7 @@ export default function App() {
           <Stack.Screen name="Card" component={Card} />
           <Stack.Screen name="Card2" component={Card2} />
           <Stack.Screen name="sessionPac" component={SessaoPac} />
-          <Stack.Screen name="sessionPSi" component={SessaoPsi} />
+          <Stack.Screen name="sessionPSi" component={SessaoPsi} /> */}
 
           <Stack.Screen name="TelaPerfilPsi" component={TelaPerfilPsi} />
           <Stack.Screen name="TelaAgendaPsi" component={TelaAgendaPsi} />
