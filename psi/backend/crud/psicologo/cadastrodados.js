@@ -5,20 +5,9 @@ module.exports = {
     psicologo: (req, res, next) => {
 
         const {
-            email, pass, passconfirm,
-            nome, sobrenome, cpf, crp,
-            rg, telefone, celular,
-            genero, sexo, cep,
-            rua, numero, complemento,
-            bairro, cidade, estado } = req.body
-
-
-        // console.log(email, pass, passconfirm,
-        //     nome, sobrenome, cpf,
-        //     rg, telefone, celular,
-        //     genero, sexo, cep,
-        //     rua, numero, complemento,
-        //     bairro, cidade, estado)
+            email, pass, passconfirm, nome, sobrenome, cpf, crp,
+            rg, telefone, celular, genero, sexo, cep,
+            rua, numero, complemento, bairro, cidade, estado } = req.body
 
 
         const insertDadosPsicologoPessoais = "insert into tbl_psicologo(psi_st_nome, psi_st_sobrenome, psi_st_cpf, psi_st_crp, psi_st_email, psi_st_telefone, psi_st_celular, psi_st_senha, psi_en_orientacao_sex) values(?,?,?,?,?,?,?,?,?)"
@@ -43,16 +32,5 @@ module.exports = {
             }
 
         })
-        // final da query
-
     }
 }
-
-
-
-// console.log(email, pass, passconfirm,
-//     nome, sobrenome, cpf,
-//     rg, telefone, celular,
-//     genero, sexo, cep,
-//     rua, numero, complemento,
-//     bairro, cidade, estado)

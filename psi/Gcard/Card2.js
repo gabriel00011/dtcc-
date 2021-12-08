@@ -4,7 +4,7 @@ import { SafeAreaView, View, TouchableHighlight, ScrollV } from "react-native"
 import { Text } from "react-native-elements"
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize"
 import IconAntDesign from "react-native-vector-icons/AntDesign"
-import axios from "axios"
+import { api } from "../source_config/axios"
 
 // importação de arquivo de estilização
 import { style } from "../css/CssCard/CssCard2"
@@ -35,7 +35,7 @@ export default ({ route, navigation }) => {
 
         try {
 
-            axios.get("http://192.168.15.223/getDadosPsicologo/" + parse)
+            api.get("/getDadosPsicologo/" + parse)
                 .then(DadosPsicologo => DadosPsicologo.data)
                 .then(renderDados => {
                     setListDados(renderDados.resultado)
@@ -63,7 +63,7 @@ export default ({ route, navigation }) => {
     console.log(Id_psicologo)
 
     const agendamento = (buttonHours, dayHours, Id_psicologo, id_pacP) => {
-        axios.post("http://192.168.15.223:80/agendaPsi", {
+        api.post("/agendaPsi", {
             hours: buttonHours,
             day: dayHours,
             idPsi: Id_psicologo,

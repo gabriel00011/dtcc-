@@ -4,7 +4,7 @@ import { View, SafeAreaView, TouchableHighlight, ScrollView } from "react-native
 import { Text } from "react-native-elements"
 import IconAntDesign from "react-native-vector-icons/AntDesign"
 import IconMaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons"
-import axios from "axios"
+import { api } from "../source_config/axios"
 
 // importação de tela de estilização
 import { style } from "../css/CssSessao/CssSessaoPsi"
@@ -32,7 +32,7 @@ export default ({ route, navigation }) => {
     try {
 
         useEffect(() => {
-            axios.post(`http://192.168.15.223/searchPsicologo`, {
+            api.post(`/searchPsicologo`, {
 
                 infantil: DadosCard.infantil,
                 idoso: DadosCard.idoso,
@@ -57,7 +57,7 @@ export default ({ route, navigation }) => {
         }, [])
 
     } catch (e) {
-            console.log(e)
+        console.log(e)
     }
 
     console.log(DadosCard.ansiedade, DadosCard.idoso)

@@ -4,19 +4,10 @@ module.exports = {
     paciente: (req, res, next) => {
 
         const {
-            email, pass, passconfirm,
-            nome, sobrenome, cpf,
-            rg, data, telefone, celular,
-            genero, sexo, cep,
-            rua, numero, complemento,
-            bairro, cidade, estado } = req.body
+            email, pass, passconfirm, nome, sobrenome, cpf,
+            rg, data, telefone, celular, genero, sexo, cep,
+            rua, numero, complemento, bairro, cidade, estado } = req.body
 
-        console.log(email, pass, passconfirm,
-            nome, sobrenome, cpf,
-            rg, data, telefone, celular,
-            genero, sexo, cep,
-            rua, numero, complemento,
-            bairro, cidade, estado)
 
         // mudando a data para inserção na tabela no banco de dados mysql
         const changeDatad = data.toString()
@@ -51,23 +42,7 @@ module.exports = {
 
             })
 
-            // fim da query 
-
-
         });
 
     }
 }
-
-
-
-
-
-
-
-// console.log(email, pass, passconfirm,
-//     nome, sobrenome, cpf,
-//     rg, data, telefone, celular,
-//     genero, sexo, cep,
-//     rua, numero, complemento,
-//     bairro, cidade, estado)

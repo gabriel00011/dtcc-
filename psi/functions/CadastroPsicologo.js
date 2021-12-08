@@ -1,6 +1,5 @@
-import React from "react"
-import axios from "axios"
 export const firebase = require('firebase')
+import { api } from "../source_config/axios"
 
 let firebaseConfiga = {
     apiKey: "AIzaSyACneTH-9jieXJTWiMRZ7tkL0E-Fq-1IcU",
@@ -20,10 +19,7 @@ if (firebase.apps.length === 0) {
 
 }
 
-
-
 export const DadosPsicologo = {}
-
 
 export const FuncDadosPsi1 = (email, pass, passconfirm) => {
 
@@ -77,7 +73,7 @@ export function Cadastrar() {
 
     try {
 
-        axios.post('http://192.168.15.223/dadospsicologo', {
+        api.post('/dadospsicologo', {
 
             email: DadosPsicologo.email,
             pass: DadosPsicologo.pass,

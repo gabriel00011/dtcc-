@@ -3,6 +3,7 @@ import React, { useState } from "react"
 import { View, SafeAreaView, TouchableHighlight, TextInput, Picker } from "react-native"
 import { Text } from "react-native-elements"
 const { firebase } = require("../../functions/CadastroPsicologo")
+import { api } from "../../source_config/axios"
 
 // importação componente de estilização
 import { style } from "../../css/CssCadastroPsi/CssTelaCadastro3"
@@ -12,11 +13,6 @@ import { FuncDadosPac3, Cadastrar, DadosPaciente } from "../../functions/Cadastr
 import cadastro from "../cadastroPsi/cadastro"
 
 export default ({ navigation }) => {
-
-    function nav() {
-        navigation.navigate("Login")
-    }
-
 
     const [cepValue, setCepInput] = useState("")
     const [ruaValue, setRuaInput] = useState("")
@@ -36,7 +32,7 @@ export default ({ navigation }) => {
         firebase.auth().createUserWithEmailAndPassword(DadosPaciente.email, DadosPaciente.pass)
             .then(() => {
                 Cadastrar()
-                nav()
+                navigation.navigate("Login")
                 // console.warn("sucesso")
             }).catch((err) => {
                 console.warn(err)

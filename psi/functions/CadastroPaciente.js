@@ -1,32 +1,6 @@
-import React from "react"
-import axios from "axios"
-export const firebase = require('firebase')
+import { api } from "../source_config/axios"
 
 export const DadosPaciente = {}
-
-// export function send() {
-//     const firebaseConfiga = {
-//         apiKey: "AIzaSyACneTH-9jieXJTWiMRZ7tkL0E-Fq-1IcU",
-//         authDomain: "loginpaciente-4671e.firebaseapp.com",
-//         projectId: "loginpaciente-4671e",
-//         storageBucket: "loginpaciente-4671e.appspot.com",
-//         messagingSenderId: "412155378549",
-//         appId: "1:412155378549:web:83b3aef86f6ec174d8313c"
-//     };
-
-
-//     const app = firebase.initializeApp(firebaseConfiga)
-
-//     firebase.auth().createUserWithEmailAndPassword(DadosPaciente.email, DadosPaciente.pass)
-//         .then(() => {
-//             // nav()
-//             console.warn("sucesso")
-//         }).catch((err) => {
-//             console.warn(err)
-//         })
-// }
-
-
 
 export const FuncDadosPac1 = (email, pass, passconfirm) => {
 
@@ -53,8 +27,8 @@ export const ComfirmValuePassword = () => {
 }
 
 
-
 export const FuncDadosPac2 = (nome, sobrenome, cpf, data, rg, telefone, celular, genero, sexo) => {
+
     DadosPaciente.nome = nome
     DadosPaciente.sobrenome = sobrenome
     DadosPaciente.cpf = cpf
@@ -69,6 +43,7 @@ export const FuncDadosPac2 = (nome, sobrenome, cpf, data, rg, telefone, celular,
 }
 
 export const FuncDadosPac3 = (cep, rua, numero, complemento, bairro, cidade, estado) => {
+
     DadosPaciente.cep = cep
     DadosPaciente.rua = rua
     DadosPaciente.numero = numero
@@ -77,7 +52,6 @@ export const FuncDadosPac3 = (cep, rua, numero, complemento, bairro, cidade, est
     DadosPaciente.cidade = cidade
     DadosPaciente.estado = estado
 
-
 }
 
 
@@ -85,7 +59,7 @@ export const FuncDadosPac3 = (cep, rua, numero, complemento, bairro, cidade, est
 export const Cadastrar = () => {
     try {
 
-        axios.post('http://192.168.15.223/dadospaciente', {
+        api.post('/dadospaciente', {
 
             email: DadosPaciente.email,
             pass: DadosPaciente.pass,

@@ -4,12 +4,10 @@ import { View, SafeAreaView, TouchableHighlight, ScrollView } from "react-native
 import { Text } from "react-native-elements"
 import IconAntDesign from "react-native-vector-icons/AntDesign"
 import IconMaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons"
-import axios from "axios"
+import { api } from "../source_config/axios"
 
 // importação de tela de estilização
 import { style } from "../css/CssSessao/CssSessaoPsi"
-
-import { DadosCard } from "../functions/Card1"
 
 export default ({ route, navigation }) => {
 
@@ -20,7 +18,7 @@ export default ({ route, navigation }) => {
 
         const id_psiS = JSON.stringify(idPsi)
         var id_psiP = JSON.parse(id_psiS)
-        
+
     } catch (e) {
         console.log(e)
     }
@@ -31,7 +29,7 @@ export default ({ route, navigation }) => {
     try {
 
         useEffect(() => {
-            axios.post(`http://192.168.15.223/showAgenda`, {
+            api.post(`/showAgenda`, {
                 idPsi: id_psiP
             })
                 .then(resp => resp.data)

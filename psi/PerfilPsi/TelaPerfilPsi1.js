@@ -1,6 +1,4 @@
 import React, { useState, useEffect, useMemo } from "react"
-
-import axios from "axios"
 import { View, SafeAreaView, TouchableHighlight, ScrollView, Picker, Button, TextInput, FlatList, Linking } from "react-native"
 import { Text } from "react-native-elements"
 import IconAntDesign from "react-native-vector-icons/AntDesign"
@@ -8,8 +6,7 @@ import IconMaterialCommunityIcons from "react-native-vector-icons/MaterialCommun
 import DateTimePicker from '@react-native-community/datetimepicker'
 import DatePicker from 'react-native-datepicker'
 import IconFeather from "react-native-vector-icons/Feather"
-
-// importação arquivos externos
+import { api } from "../source_config/axios"
 import { style } from "../css/CssPerfilPsi/CssTelaPerfilPsi"
 import { getDados, session, SessionDadosPsi } from "../functions/getSessionPsi"
 import { DadosLogin } from "../functions/login"
@@ -18,7 +15,9 @@ import { InsertHours, updateHours, DeleteHours, addPublic, delteSession } from "
 export default ({ route, navigation }) => {
 
     try {
-        const { email } = route.params
+
+        var { email } = route.params
+
     } catch (e) {
 
     }
@@ -33,24 +32,29 @@ export default ({ route, navigation }) => {
     const [selectedValuePubli, setSelectedValuePubli] = useState("")
     const [selectedValueEsp, setSelectedValueEsp] = useState("")
 
-    console.log(listDadosPsi)
 
     useEffect(() => {
 
         try {
-            axios.get("http://192.168.15.223/getDadosPsicologo/" + email)
-                .then(DadosPsicologo => DadosPsicologo.data)
-                .then(renderDados => {
-                    setListDados(renderDados.resultado)
-                    setDataSeg(renderDados.resultSeg)
-                    setDataTer(renderDados.resultTer)
-                    setDataQua(renderDados.resultQua)
-                    setDataQui(renderDados.resultQui)
-                    setDataSex(renderDados.resultSex)
-                    setAgenda(renderDados.resultAgends)
-                }).catch((e) => {
-                    console.log(e)
-                })
+
+            async function getDataPsicolgo() {
+
+                const callDataPsi = await api.get("/getDadosPsicologo/" + email)
+                    .then(DadosPsicologo => DadosPsicologo.data)
+                    .then(renderDados => {
+                        setListDados(renderDados.resultado)
+                        setDataSeg(renderDados.resultSeg)
+                        setDataTer(renderDados.resultTer)
+                        setDataQua(renderDados.resultQua)
+                        setDataQui(renderDados.resultQui)
+                        setDataSex(renderDados.resultSex)
+                        setAgenda(renderDados.resultAgends)
+                    }).catch((e) => {
+                        console.log(e)
+                    })
+            }
+
+            getDataPsicolgo()
 
         } catch (err) {
             console.log(err)
@@ -76,13 +80,11 @@ export default ({ route, navigation }) => {
         console.log(e)
     }
 
-    console.log("id do psicologo", Id_psicologo)
-
     async function ReloadBanco() {
 
         try {
 
-            axios.get("http://192.168.15.223/getDadosPsicologo/" + email)
+            const getDataHoursPsicologo = await api.get("/getDadosPsicologo/" + email)
                 .then(DadosPsicologo => DadosPsicologo.data)
                 .then(renderDados => {
                     setListDados(renderDados.resultado)
@@ -91,7 +93,10 @@ export default ({ route, navigation }) => {
                     setDataQua(renderDados.resultQua)
                     setDataQui(renderDados.resultQui)
                     setDataSex(renderDados.resultSex)
+                }).catch(e => {
+                    console.log(e)
                 })
+
         } catch (err) {
             console.log(err)
         }

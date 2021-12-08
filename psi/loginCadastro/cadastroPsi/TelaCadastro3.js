@@ -17,7 +17,6 @@ export default ({ navigation }) => {
 
     function sendL() {
 
-
         firebase.auth().createUserWithEmailAndPassword(DadosPsicologo.email, DadosPsicologo.pass)
             .then(() => {
                 Cadastrar()
@@ -25,12 +24,7 @@ export default ({ navigation }) => {
             }).catch((error) => {
                 console.warn(error)
             })
-
-
     }
-
-    console.warn(DadosPsicologo.email)
-
 
 
     const [cepValue, setCepInput] = useState("")
@@ -42,7 +36,6 @@ export default ({ navigation }) => {
     const [selectedValue, setSelectedValue] = useState("")
 
     FuncDadosPsi3(cepValue, ruaValue, NumeroValue, complementosValue, bairroValue, cidadeValue, selectedValue)
-
 
     return (
 

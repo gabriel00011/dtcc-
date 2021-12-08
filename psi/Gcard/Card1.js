@@ -7,7 +7,7 @@ import { RFPercentage, RFValue } from "react-native-responsive-fontsize"
 import IconMaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons"
 import IconAntDesign from "react-native-vector-icons/AntDesign"
 import IconFeather from "react-native-vector-icons/Feather"
-import axios from "axios"
+import { api } from "../source_config/axios"
 
 // importação de arquivo para estilização
 import { style } from "../css/CssCard/CssCard"
@@ -38,7 +38,7 @@ export default ({ navigation }) => {
 
     useEffect(() => {
         try {
-            axios.get("http://192.168.15.223/dadosPaciente/" + DadosLogin.email)
+            api.get("/dadosPaciente/" + DadosLogin.email)
                 .then(resp => resp.data)
                 .then(resp => {
                     setDadosPaciente(resp)

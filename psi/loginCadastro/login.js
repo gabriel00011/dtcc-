@@ -24,20 +24,10 @@ import CadastroPsi from "./cadastroPsi/cadastro"
 import { estilo } from "../css/login"
 
 export default ({ navigation }) => {
-
+    
     const [emailValue, setEmailInput] = useState("")
     const [passwordValue, setPasswordInput] = useState("")
     const [checked, setChecked] = useState("paciente")
-
-    function MainScreenPsicologo() {
-        navigation.replace("TelaPerfilPsi", { email: emailValue })
-    }
-
-    function MainScreenPaciente() {
-        navigation.replace("Card")
-    }
-
-
 
     function login() {
 
@@ -45,16 +35,16 @@ export default ({ navigation }) => {
             .then(() => {
 
                 if (checked == "paciente") {
-                    MainScreenPaciente()
+                    navigation.replace("Card")
                 }
 
                 if (checked == "psicologo") {
-                    MainScreenPsicologo()
-                    session()
+                    navigation.replace("TelaPerfilPsi", { email: emailValue })
+
                 }
 
             }).catch((err) => {
-                // console.log(err)
+                console.log(err)
             })
     }
 
