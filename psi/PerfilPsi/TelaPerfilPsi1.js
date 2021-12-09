@@ -4,7 +4,6 @@ import { Text } from "react-native-elements"
 import IconAntDesign from "react-native-vector-icons/AntDesign"
 import IconMaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons"
 import DateTimePicker from '@react-native-community/datetimepicker'
-import DatePicker from 'react-native-datepicker'
 import IconFeather from "react-native-vector-icons/Feather"
 import { api } from "../source_config/axios"
 import { style } from "../css/CssPerfilPsi/CssTelaPerfilPsi"
@@ -31,7 +30,6 @@ export default ({ route, navigation }) => {
     const [agenda, setAgenda] = useState([])
     const [selectedValuePubli, setSelectedValuePubli] = useState("")
     const [selectedValueEsp, setSelectedValueEsp] = useState("")
-
 
     useEffect(() => {
 
@@ -80,28 +78,34 @@ export default ({ route, navigation }) => {
         console.log(e)
     }
 
-    async function ReloadBanco() {
+    useEffect(() => {
 
-        try {
+        async function ReloadBanco() {
 
-            const getDataHoursPsicologo = await api.get("/getDadosPsicologo/" + email)
-                .then(DadosPsicologo => DadosPsicologo.data)
-                .then(renderDados => {
-                    setListDados(renderDados.resultado)
-                    setDataSeg(renderDados.resultSeg)
-                    setDataTer(renderDados.resultTer)
-                    setDataQua(renderDados.resultQua)
-                    setDataQui(renderDados.resultQui)
-                    setDataSex(renderDados.resultSex)
-                }).catch(e => {
-                    console.log(e)
-                })
+            try {
 
-        } catch (err) {
-            console.log(err)
+                const getDataHoursPsicologo = await api.get("/getDadosPsicologo/" + email)
+                    .then(DadosPsicologo => DadosPsicologo.data)
+                    .then(renderDados => {
+                        setListDados(renderDados.resultado)
+                        setDataSeg(renderDados.resultSeg)
+                        setDataTer(renderDados.resultTer)
+                        setDataQua(renderDados.resultQua)
+                        setDataQui(renderDados.resultQui)
+                        setDataSex(renderDados.resultSex)
+                    }).catch(e => {
+                        console.log(e)
+                    })
+
+            } catch (err) {
+                console.log(err)
+            }
+
         }
 
-    }
+        ReloadBanco()
+    }, [])
+
 
     const [dateValue, setDateValue] = useState("")
     const [selectedValue, setSelectedValue] = useState("seg")
@@ -177,9 +181,7 @@ export default ({ route, navigation }) => {
         showMode2('time');
     };
 
-
     return (
-
 
         <SafeAreaView style={style["Main"]}>
 
@@ -234,8 +236,6 @@ export default ({ route, navigation }) => {
                         ))}
 
                     </View>
-
-
                 </View>
 
                 {/* View de direcionamento para consulta */}
@@ -414,7 +414,6 @@ export default ({ route, navigation }) => {
 
                         </View>
 
-
                         {show && (
                             <DateTimePicker
                                 testID="dateTimePicker"
@@ -425,7 +424,6 @@ export default ({ route, navigation }) => {
                                 onChange={onChange}
                             />
                         )}
-
 
                         {show1 && (
                             <DateTimePicker

@@ -33,23 +33,29 @@ export default ({ route, navigation }) => {
 
     useEffect(() => {
 
-        try {
+        async function getDataPsicologo() {
 
-            api.get("/getDadosPsicologo/" + parse)
-                .then(DadosPsicologo => DadosPsicologo.data)
-                .then(renderDados => {
-                    setListDados(renderDados.resultado)
-                    setDataSeg(renderDados.resultSeg)
-                    setDataTer(renderDados.resultTer)
-                    setDataQua(renderDados.resultQua)
-                    setDataQui(renderDados.resultQui)
-                    setDataSex(renderDados.resultSex)
-                })
+            try {
 
-        } catch (e) {
+                const dataApiPsicologo = await api.get("/getDadosPsicologo/" + parse)
+                    .then(DadosPsicologo => DadosPsicologo.data)
+                    .then(renderDados => {
+                        setListDados(renderDados.resultado)
+                        setDataSeg(renderDados.resultSeg)
+                        setDataTer(renderDados.resultTer)
+                        setDataQua(renderDados.resultQua)
+                        setDataQui(renderDados.resultQui)
+                        setDataSex(renderDados.resultSex)
+                    })
 
-            console.log(e)
+            } catch (e) {
+
+                console.log(e)
+            }
+
         }
+
+        getDataPsicologo()
 
     }, [])
 
@@ -62,14 +68,21 @@ export default ({ route, navigation }) => {
 
     console.log(Id_psicologo)
 
-    const agendamento = (buttonHours, dayHours, Id_psicologo, id_pacP) => {
-        api.post("/agendaPsi", {
-            hours: buttonHours,
-            day: dayHours,
-            idPsi: Id_psicologo,
-            idPac: id_pacP
-        })
+    try {
+
+        async function agendamento(buttonHours, dayHours, Id_psicologo, id_pacP) {
+            const dataApiPsi = await api.post("/agendaPsi", {
+                hours: buttonHours,
+                day: dayHours,
+                idPsi: Id_psicologo,
+                idPac: id_pacP
+            })
+        }
+        agendamento()
+    } catch (e) {
+        console.log(e)
     }
+
 
 
     return (
@@ -81,7 +94,7 @@ export default ({ route, navigation }) => {
                 <View style={style["SessionDadosPsi"]}>
 
                     <View style={style["Photo"]}>
-                    {listDadosPsi.map((value) => (
+                        {listDadosPsi.map((value) => (
                             <Text style={{ fontWeight: "bold", fontSize: 25, color: "white" }}> {value.psi_st_nome.charAt().toUpperCase()} </Text>
                         ))}
                     </View>

@@ -10,10 +10,6 @@ module.exports = {
 
 
         // mudando a data para inserção na tabela no banco de dados mysql
-        const changeDatad = data.toString()
-        const changea = changeDatad.split("")
-        const thost = changea[6] + changea[7] + changea[8] + changea[9] + "-" + changea[3] + changea[4] + "-" + changea[0] + changea[1]
-
 
         con.connect(function (err) {
 
@@ -22,7 +18,7 @@ module.exports = {
             const Id_paciente = "select max(pa_in_codigo) from tbl_paciente"
 
             // insert de dados pessoais 
-            con.query(insertDadosPacientePessoais, [nome, sobrenome, thost, cpf, rg, email, telefone, celular, pass, sexo], (err, result) => {
+            con.query(insertDadosPacientePessoais, [nome, sobrenome, data, cpf, rg, email, telefone, celular, pass, sexo], (err, result) => {
 
                 con.query(Id_paciente, (err, result, fields) => {
                     let resultado = JSON.stringify(result)

@@ -3,7 +3,7 @@ import React, { useState, useContext, useMemo } from "react"
 import { View, SafeAreaView, TextInput, Button, TouchableHighlight, ScrollView, Picker } from "react-native"
 import { Text } from "react-native-elements"
 import { RadioButton } from "react-native-paper"
-import DatePicker from 'react-native-datepicker'
+import DateTimePicker from '@react-native-community/datetimepicker'
 
 // importação de componente de estilização
 import { style } from "../../css/CssCadastroPac/CssCadastroPac2"
@@ -21,8 +21,30 @@ export default ({ navigation }) => {
     const [selectedValue, setSelectedValue] = useState("");
     const [dateValue, setDateValue] = useState("")
 
-    FuncDadosPac2(nameValue, middlenameValue, cpfValue, dateValue, rgValue, telefoneValue, celValue, selectedValue, checked)
+    const [date, setDate] = useState(new Date());
+    const [mode, setMode] = useState("time");
+    const [show, setShow] = useState(false);
 
+    const convertDate = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDay()
+
+    console.log(convertDate)
+
+    const onChange = (event, selectedDate) => {
+        const currentDate = selectedDate || date
+        setShow(Platform.OS === 'ios');
+        setDate(currentDate);
+    };
+
+    const showMode = (currentMode) => {
+        setShow(true);
+        setMode(currentMode);
+    };
+
+    const showTimepicker = () => {
+        showMode('date');
+    };
+
+    FuncDadosPac2(nameValue, middlenameValue, cpfValue, convertDate, rgValue, telefoneValue, celValue, selectedValue, checked)
 
     return (
         // View Elemento Filho/Pai
@@ -67,6 +89,7 @@ export default ({ navigation }) => {
                         <Picker.Item label="Transgênero" value="Transgenero" />
                         <Picker.Item label="Não binário" value="Nao binario" />
                         <Picker.Item label="Cisgênero" value="Cisgenero" />
+
                     </Picker>
 
 
@@ -90,14 +113,41 @@ export default ({ navigation }) => {
                 <TextInput style={style["Inputs"]}
                     onChangeText={(rg) => setRgInput(rg)} placeholder="RG" />
 
-                <DatePicker
-                    format="DD/MM/YYYY"
-                    date={dateValue}
-                    androidMode="spinner"
-                    style={style["Inputs"]}
-                    onDateChange={(valor) => setDateValue(valor)}
-                    placeholder="Data de Nascimento"
-                />
+                <View style={{ flexDirection: "row" }}>
+                    <View style={{
+                        height: 40,
+                        width: "80%",
+                        borderColor: "#A9A9A9",
+                        borderWidth: 2,
+                        borderRadius: 4,
+                        marginBottom: 10,
+                        alignItems: "center",
+                        justifyContent: "center",
+
+                    }}>
+                        <Text>{convertDate}</Text>
+
+                    </View>
+
+                    {show && (
+                        <DateTimePicker
+                            style={style["Inputs"]}
+                            value={date}
+                            mode={mode}
+                            is24Hour={true}
+                            display="spinner"
+                            onChange={onChange}
+                        />
+                    )}
+
+                    <TouchableHighlight onPress={showTimepicker} underlayColor="none">
+                        <View style={{
+                            height: 40, width: 75, justifyContent: "center", alignItems: "center", backgroundColor: "#6A5ACD", borderRadius: 7
+                        }}>
+                            <Text style={{ color: "white" }}>hours</Text>
+                        </View>
+                    </TouchableHighlight>
+                </View>
 
                 <TextInput style={style["Inputs"]}
                     onChangeText={(tel) => setTelefoneInput(tel)} placeholder=" Telefone" />
@@ -123,6 +173,6 @@ export default ({ navigation }) => {
 
             </View>
 
-        </SafeAreaView>
+        </SafeAreaView >
     )
 }

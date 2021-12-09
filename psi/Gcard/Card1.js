@@ -37,15 +37,20 @@ export default ({ navigation }) => {
     const [alcoolismo, setalcoolismo] = useState(false)
 
     useEffect(() => {
-        try {
-            api.get("/dadosPaciente/" + DadosLogin.email)
-                .then(resp => resp.data)
-                .then(resp => {
-                    setDadosPaciente(resp)
-                })
-        } catch (err) {
-            console.log(err)
+        async function GetDataPaciente() {
+
+            try {
+                api.get("/dadosPaciente/" + DadosLogin.email)
+                    .then(resp => resp.data)
+                    .then(resp => {
+                        setDadosPaciente(resp)
+                    })
+            } catch (err) {
+                console.log(err)
+            }
         }
+
+        GetDataPaciente()
 
     }, [])
 
