@@ -68,19 +68,20 @@ export default ({ route, navigation }) => {
 
     console.log(Id_psicologo)
 
-    try {
 
-        async function agendamento(buttonHours, dayHours, Id_psicologo, id_pacP) {
+    async function agendamento(buttonHours, dayHours, Id_psicologo, id_pacP) {
+
+        try {
             const dataApiPsi = await api.post("/agendaPsi", {
                 hours: buttonHours,
                 day: dayHours,
                 idPsi: Id_psicologo,
                 idPac: id_pacP
             })
+        } catch (e) {
+            console.log(e)
         }
-        agendamento()
-    } catch (e) {
-        console.log(e)
+
     }
 
 

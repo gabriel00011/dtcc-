@@ -29,7 +29,7 @@ export default ({ navigation }) => {
 
         <KeyboardAvoidingView
             behavior={Platform.OS == "ios" ? "padding" : null}
-            keyboardVerticalOffset={80}
+            keyboardVerticalOffset={0}
             style={style["Main"]}>
 
             <View style={style["MainChildren"]}>

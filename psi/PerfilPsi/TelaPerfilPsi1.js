@@ -78,33 +78,29 @@ export default ({ route, navigation }) => {
         console.log(e)
     }
 
-    useEffect(() => {
+    async function ReloadBanco() {
 
-        async function ReloadBanco() {
+        try {
 
-            try {
+            const getDataHoursPsicologo = await api.get("/getDadosPsicologo/" + email)
+                .then(DadosPsicologo => DadosPsicologo.data)
+                .then(renderDados => {
+                    setListDados(renderDados.resultado)
+                    setDataSeg(renderDados.resultSeg)
+                    setDataTer(renderDados.resultTer)
+                    setDataQua(renderDados.resultQua)
+                    setDataQui(renderDados.resultQui)
+                    setDataSex(renderDados.resultSex)
+                }).catch(e => {
+                    console.log(e)
+                })
 
-                const getDataHoursPsicologo = await api.get("/getDadosPsicologo/" + email)
-                    .then(DadosPsicologo => DadosPsicologo.data)
-                    .then(renderDados => {
-                        setListDados(renderDados.resultado)
-                        setDataSeg(renderDados.resultSeg)
-                        setDataTer(renderDados.resultTer)
-                        setDataQua(renderDados.resultQua)
-                        setDataQui(renderDados.resultQui)
-                        setDataSex(renderDados.resultSex)
-                    }).catch(e => {
-                        console.log(e)
-                    })
-
-            } catch (err) {
-                console.log(err)
-            }
-
+        } catch (err) {
+            console.log(err)
         }
 
-        ReloadBanco()
-    }, [])
+    }
+
 
 
     const [dateValue, setDateValue] = useState("")
@@ -115,6 +111,7 @@ export default ({ route, navigation }) => {
     const [date, setDate] = useState(new Date());
     const [mode, setMode] = useState("time");
     const [show, setShow] = useState(false);
+
 
     const hours = date.getHours() + ":" + date.getMinutes().toString()
     // console.log(hours)
@@ -164,7 +161,7 @@ export default ({ route, navigation }) => {
     const [show2, setShow2] = useState(false);
 
     const hours2 = date2.getHours() + ":" + date2.getMinutes().toString()
-    // console.log(hours2)
+    console.log(date2)
 
     const onChange2 = (event, selectedDate) => {
         const currentDate = selectedDate || date;
@@ -181,10 +178,16 @@ export default ({ route, navigation }) => {
         showMode2('time');
     };
 
+    const memoryData = useMemo(() => {
+        setDate
+        setDate1
+        setDate2
+    }, [])
+
     return (
 
         <SafeAreaView style={style["Main"]}>
-
+            {memoryData}
             {/* Centralizar View */}
             <ScrollView style={style["SessionCenter"]} vertical={true} >
 

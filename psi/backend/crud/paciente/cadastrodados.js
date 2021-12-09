@@ -17,6 +17,10 @@ module.exports = {
             const insertDadosPacienteEndereco = 'insert into tbl_end_paciente( pa_in_codigo, end_st_uf, end_st_bairro, end_st_cidade, end_st_rua, end_st_complemento, end_st_numero, end_st_cep ) values (?,?,?,?,?,?,?,?)'
             const Id_paciente = "select max(pa_in_codigo) from tbl_paciente"
 
+            const changeDatad = data.toString()
+            const changea = changeDatad.split("")
+            const thost = changea[6] + changea[7] + changea[8] + changea[9] + "-" + changea[3] + changea[4] + "-" + changea[0] + changea[1]
+    
             // insert de dados pessoais 
             con.query(insertDadosPacientePessoais, [nome, sobrenome, data, cpf, rg, email, telefone, celular, pass, sexo], (err, result) => {
 
