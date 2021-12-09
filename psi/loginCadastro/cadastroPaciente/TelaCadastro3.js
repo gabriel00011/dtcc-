@@ -7,10 +7,7 @@ import { api } from "../../source_config/axios"
 
 // importação componente de estilização
 import { style } from "../../css/CssCadastroPsi/CssTelaCadastro3"
-
-
 import { FuncDadosPac3, Cadastrar, DadosPaciente } from "../../functions/CadastroPaciente"
-import cadastro from "../cadastroPsi/cadastro"
 
 export default ({ navigation }) => {
 

@@ -116,7 +116,7 @@ export default ({ navigation }) => {
                 <View style={{ flexDirection: "row" }}>
                     <View style={{
                         height: 40,
-                        width: "80%",
+                        width: "70%",
                         borderColor: "#A9A9A9",
                         borderWidth: 2,
                         borderRadius: 4,
@@ -142,7 +142,7 @@ export default ({ navigation }) => {
 
                     <TouchableHighlight onPress={showTimepicker} underlayColor="none">
                         <View style={{
-                            height: 40, width: 75, justifyContent: "center", alignItems: "center", backgroundColor: "#6A5ACD", borderRadius: 7
+                            height: 40, width: "200%", justifyContent: "center", alignItems: "center", backgroundColor: "#6A5ACD", borderRadius: 7
                         }}>
                             <Text style={{ color: "white" }}>hours</Text>
                         </View>
