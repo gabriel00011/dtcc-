@@ -9,7 +9,6 @@ module.exports = {
         const dadosPaciente = "select * from tbl_paciente where pa_st_email = ?"
 
         con.query(dadosPaciente, [email], (err, result) => {
-            console.log(result)
             res.json(result)
         })
 

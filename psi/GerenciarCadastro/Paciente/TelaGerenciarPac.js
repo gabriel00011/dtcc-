@@ -205,7 +205,7 @@ export default ({ navigation }) => {
                         <View style={style["SessionButtonFooter"]}>
 
                             <View>
-                                <TouchableHighlight onPress={() => UpdateDadosPaciente()}>
+                                <TouchableHighlight >
                                     <View style={style["ButtonSave"]}>
                                         <Text style={{ color: "white" }} h4>Salvar Alterações</Text>
                                     </View>

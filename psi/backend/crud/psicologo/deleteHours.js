@@ -17,8 +17,7 @@ module.exports = {
             if (dayWeekend == "seg") {
                
                 con.query(delHourSeg, [IdPsi, Hour], (err, result) => {
-                    console.log(err)
-                    console.log(result)
+                    res.end()
                 })
                 
             }
@@ -33,8 +32,7 @@ module.exports = {
             if (dayWeekend == "ter") {
                
                 con.query(delHourTer, [IdPsi, Hour], (err, result) => {
-                    console.log(err)
-                    console.log(result)
+                    res.end()
                 })
 
             }
@@ -49,8 +47,7 @@ module.exports = {
             if (dayWeekend == "qua") {
               
                 con.query(delHourQua, [IdPsi, Hour], (err, result) => {
-                    console.log(err)
-                    console.log(result)
+                    res.end()
                 })
 
             }
@@ -65,8 +62,7 @@ module.exports = {
             if (dayWeekend == "qui") {
                 
                 con.query(delHourQui, [IdPsi, Hour], (err, result) => {
-                    console.log(err)
-                    console.log(result)
+                    res.end()
                 })
 
             }
@@ -81,8 +77,7 @@ module.exports = {
             if (dayWeekend == "sex") {
 
                 con.query(delHourSex, [IdPsi, Hour], (err, result) => {
-                    console.log(err)
-                    console.log(result)
+                    res.end()
                 })
 
             }

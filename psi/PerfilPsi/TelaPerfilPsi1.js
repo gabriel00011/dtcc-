@@ -8,8 +8,7 @@ import IconFeather from "react-native-vector-icons/Feather"
 import { api } from "../source_config/axios"
 import { style } from "../css/CssPerfilPsi/CssTelaPerfilPsi"
 import { getDados, session, SessionDadosPsi } from "../functions/getSessionPsi"
-import { DadosLogin } from "../functions/login"
-import { InsertHours, updateHours, DeleteHours, addPublic, delteSession } from "../functions/HoursUpDelIn"
+import {  updateHours, DeleteHours, addPublic, delteSession } from "../functions/HoursUpDelIn"
 
 export default ({ route, navigation }) => {
 
@@ -101,8 +100,6 @@ export default ({ route, navigation }) => {
 
     }
 
-
-
     const [dateValue, setDateValue] = useState("")
     const [selectedValue, setSelectedValue] = useState("seg")
     const [selectUpdate, setSelectUpdate] = useState("seg")
@@ -178,16 +175,11 @@ export default ({ route, navigation }) => {
         showMode2('time');
     };
 
-    const memoryData = useMemo(() => {
-        setDate
-        setDate1
-        setDate2
-    }, [])
 
     return (
 
         <SafeAreaView style={style["Main"]}>
-            {memoryData}
+
             {/* Centralizar View */}
             <ScrollView style={style["SessionCenter"]} vertical={true} >
 
@@ -325,8 +317,8 @@ export default ({ route, navigation }) => {
                     </View>
 
                     <View style={{ width: "100%", alignItems: "center", marginBottom: 40 }}>
-                        <TouchableHighlight underlayColor="none" onPress={() => {
-                            addPublic(selectedValuePubli, selectedValueEsp, Id_psicologo)
+                        <TouchableHighlight underlayColor="none" onPressIn={async () => {
+                            await addPublic(selectedValuePubli, selectedValueEsp, Id_psicologo)
                         }}>
                             <View style={style["SameButton"]}>
                                 <Text style={{ color: "white" }}>Adicionar</Text>
@@ -482,7 +474,7 @@ export default ({ route, navigation }) => {
 
                         <View style={style["setHour"]}>
 
-                            <TouchableHighlight underlayColor="none" onPress={() => showTimepicker("time")}>
+                            <TouchableHighlight underlayColor="none" onPressIn={() => showTimepicker("time")}>
                                 <View style={style["buttonHour"]}>
                                     <Text style={{ color: "white" }}>Horario</Text>
                                 </View>
@@ -495,18 +487,16 @@ export default ({ route, navigation }) => {
 
                         <View style={style["orderUpAndDelte"]}>
 
-                            <TouchableHighlight underlayColor="none" onPress={() => {
-                                // ReloadBanco(email)
-                                InsertHours(Id_psicologo, selectedValue, hours)
-                            }}>
+                            <TouchableHighlight underlayColor="none" onPressIn={async () =>
+                                await InsertHours(Id_psicologo, selectedValue, hours)
+                            }>
                                 <View style={style["buttonUpAndDel"]}>
                                     <Text style={{ color: "white" }}>Adicionar</Text>
                                 </View>
                             </TouchableHighlight>
 
-                            <TouchableHighlight underlayColor="none" onPress={() => {
-                                // ReloadBanco(email)
-                                DeleteHours(Id_psicologo, selectedValue, hours)
+                            <TouchableHighlight underlayColor="none" onPressIn={async () => {
+                                await DeleteHours(Id_psicologo, selectedValue, hours)
                             }}>
                                 <View style={style["buttonUpAndDel"]}>
                                     <Text style={{ color: "white" }}>Deletar</Text>
@@ -562,7 +552,7 @@ export default ({ route, navigation }) => {
                                 <View style={{ width: "100%", alignItems: "center", marginBottom: 40 }}>
                                     <TouchableHighlight underlayColor="none" onPress={() => {
                                         updateHours(hours1, hours2, Id_psicologo, selectUpdate)
-                                        // ReloadBanco(email)
+                 
                                     }}>
                                         <View style={style["SameButton"]}>
                                             <Text style={{ color: "white" }}>Atualizar</Text>

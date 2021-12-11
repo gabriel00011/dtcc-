@@ -26,8 +26,6 @@ module.exports = {
 
         console.log(idPsi, dataWeekend, hours)
 
-        try {
-
             // inserte hora segunda
             con.query(securtitySeg, [idPsi], (err, result) => {
 
@@ -37,8 +35,7 @@ module.exports = {
 
                 if (dataWeekend == "seg" && countInsertId <= 4) {
                     con.query(insertSeg, [idPsi, hours], (err, result) => {
-                        res.json(result)
-                        // console.log("resultado de insert", result)
+                        res.end()
                     })
 
                 }
@@ -53,7 +50,7 @@ module.exports = {
 
                 if (dataWeekend == "ter" && countInsertId <= 4) {
                     con.query(insertTer, [idPsi, hours], (err, result) => {
-                        res.json(result)
+                        res.end()
                     })
 
                 }
@@ -69,8 +66,7 @@ module.exports = {
                 if (dataWeekend == "qua" && countInsertId <= 4) {
 
                     con.query(insertQua, [idPsi, hours], (err, result) => {
-                        res.json(result)
-
+                        res.end()
                     })
 
                 }
@@ -86,7 +82,7 @@ module.exports = {
                 if (dataWeekend == "qui" && countInsertId <= 4) {
 
                     con.query(insertQui, [idPsi, hours], (err, result) => {
-                        res.json(result)
+                        res.end()
                     })
 
                 }
@@ -102,17 +98,11 @@ module.exports = {
                 if (dataWeekend == "sex" && countInsertId <= 4) {
 
                     con.query(insertSex, [idPsi, hours], (err, result) => {
-                        res.json(result)
+                        res.end()
                     })
 
                 }
             })
-
-        } catch (e) {
-            console.log(e.message)
-            console.log(e.code)
-        }
-
 
     }
 }

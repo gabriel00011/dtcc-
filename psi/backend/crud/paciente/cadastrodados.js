@@ -31,8 +31,7 @@ module.exports = {
 
                     // insert de dados cadastro 
                     con.query(insertDadosPacienteEndereco, [Id_paciente, estado, bairro, cidade, rua, complemento, numero, cep], (err, result) => {
-                        console.log(result)
-                        console.log(err)
+                        res.end()
                     })
 
                 })
